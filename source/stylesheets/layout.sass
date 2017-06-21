@@ -1,0 +1,604 @@
+@import 'variables'
+
+*
+  box-sizing: border-box
+
+html
+  overflow-y: scroll
+
+body
+  background-color: $image-area-background-color
+  color: $primary-text-color
+  font-family: $primary-font
+  font-size: 15px
+  
+  @media screen and (max-width: $break-medium)
+    background: $content-area-background-color
+  
+  &.standalone-page
+    padding: 140px 60px
+    text-align: center
+    
+    @media screen and (max-width: $break-medium)
+      padding: 80px 20px
+      
+    .message-holder
+      background: $content-area-background-color
+      margin: 0 auto
+      max-width: 800px
+      padding: 64px 32px
+      width: 100%
+    
+    h1
+      color: $primary-text-color
+      font-weight: normal
+      font-size: 24px
+      line-height: 1.6em
+      margin: 0
+      text-align: center
+      
+      &.checkout-header
+        margin-bottom: 0
+        
+  &.maintenance-page
+    background: $content-area-background-color
+    padding: 60px 140px
+    
+    @media screen and (max-width: $break-medium)
+      padding: 20px
+      text-align: center
+      
+    .store-link
+      margin-bottom: 244px
+      
+      @media screen and (max-width: $break-medium)
+        margin-bottom: 60px
+      
+      @media screen and (max-width: $break-small)
+        margin-bottom: 40px
+    
+    h1
+      font-size: 40px
+      font-weight: normal
+      max-width: 600px
+      width: 100%
+      
+      @media screen and (max-width: $break-medium)
+        margin-left: auto
+        margin-right: auto
+      
+    .maintenance-social-links
+      font-family: $secondary-font
+      font-size: 15px
+      line-height: 30px
+      
+  
+a
+  color: $link-color
+  text-decoration: none
+  
+button, .button
+  +appearance(none)
+  background-color: $button-background-color
+  border: 0px
+  border-radius: 100px
+  color: $button-text-color
+  cursor: pointer
+  display: inline-block
+  font-family: $secondary-font
+  font-size: 15px
+  height: 60px
+  line-height: 60px
+  padding: 0 20px
+  text-align: center
+  
+  &:active, &:focus
+    outline: none
+
+input, textarea
+  +appearance(none)
+  background-color: $content-area-background-color
+  border-radius: 0
+  border: none
+  font-family: $secondary-font
+  
+.select
+  +all-transitions
+  border-radius: 100px
+  border: 2px solid $button-background-color
+  color: $button-background-color
+  height: 60px
+  max-width: 50%
+  padding: 0
+  position: relative
+  width: 100%
+  
+  select
+    +all-transitions
+    +appearance(none)
+    background: none
+    border: 0
+    color: $button-background-color
+    font-family: $secondary-font
+    font-size: 15px
+    height: 100%
+    line-height: 2em
+    padding: 0 66px 0 20px
+    position: relative
+    width: 100%
+    z-index: 2
+
+    option
+      background-color: #FFF
+      color: #000
+
+    &:focus
+      box-shadow: none
+      outline: none
+
+    &::-ms-expand
+      display: none
+    
+  svg
+    +all-transitions
+    +vertical-align
+    fill: $button-background-color
+    height: 13px
+    margin: 0 auto
+    width: 13px
+    z-index: 1
+
+  &:hover
+    color: $button-background-color
+    border-color: $button-background-color
+
+    select
+      color: $button-background-color
+      
+    svg
+      fill: $button-background-color
+      
+  .arrow-holder
+    +all-transitions
+    height: 60px
+    position: absolute
+    right: 0
+    text-align: center
+    top: 0
+    width: 60px
+  
+ul, ol
+  list-style-type: none
+  margin: 0 
+  padding: 0
+  
+.menu-bar
+  +flexbox
+  +align-items(center)
+  +flex-direction(column)
+  +justify-content(center)
+  background: $menu-bar-background-color
+  bottom: 0
+  height: 100vh
+  left: 0
+  max-width: 60px
+  padding: 20px 0
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 3
+  
+  @media screen and (max-width: $break-medium)
+    +flex-direction(row)
+    height: 70px
+    padding: 0 20px
+    top: auto
+    max-width: 100%
+    
+  .menu-item
+    +flexbox
+    +flex(1)
+    text-align: center
+      
+  .open-cart
+    +order(1)
+    
+    @media screen and (max-width: $break-medium)
+      +justify-content(flex-end)
+      +order(3)
+      height: 70px
+      justify-content: flex-end
+    
+  .cart-title
+    color: $menu-bar-text-color
+    display: none
+    font-family: $secondary-font
+    
+    @media screen and (max-width: $break-medium)
+      +vertical-align
+      display: inline-block
+      line-height: 70px
+      margin-right: 10px
+      
+  .cart-icon
+    border-radius: 50%
+    background: $menu-bar-text-color
+    color: $menu-bar-background-color
+    display: inline-block
+    height: 40px
+    overflow: hidden
+    position: relative
+    text-align: center
+    transition: all .3s ease-in-out
+    width: 40px
+    
+    .cart-num-items
+      display: block
+      height: 40px
+      line-height: 40px
+      font-family: $secondary-font
+      position: absolute
+      width: 40px
+    
+    svg
+      fill: $menu-bar-background-color
+      height: 17px
+      left: 0
+      position: absolute
+      top: 12px
+      width: 40px
+      
+  .open-cart-link
+    @media screen and (max-width: $break-medium)
+      height: 40px
+      +vertical-align
+        
+  .toggle-overlay
+    +flex-direction(column)
+    +justify-content(center)
+    +order(2)
+    width: 20px
+    
+    @media screen and (max-width: $break-medium)
+      +flex-direction(row)
+      +justify-content(center)
+      width: auto
+    
+    @media screen and (max-width: $break-small)
+      +justify-content(flex-start)
+          
+    .open-navigation
+      color: $menu-bar-text-color
+      display: block
+      transform-style: preserve-3d
+      font-family: $secondary-font 
+      transform: rotate(180deg)
+      -ms-writing-mode: tb-lr
+      writing-mode: vertical-lr
+      transition: none
+    
+      @media screen and (max-width: $break-medium)
+        transform: none
+        writing-mode: initial
+        
+  .social-links
+    +align-items(flex-end)
+    +flexbox
+    +justify-content(flex-end)
+    +order(3)
+    +align-content(flex-end)
+    +flex-direction(column)
+    
+    @media screen and (max-width: $break-medium)
+      +flex-direction(row)
+      +justify-content(flex-start)
+      +order(1)
+    
+    @media screen and (max-width: $break-small)
+      display: none !important
+      
+    .social-link
+      transition: all .3s ease-in-out
+      margin-top: 20px
+      
+      @media screen and (max-width: $break-medium)
+        margin-top: 0
+        
+      @media screen and (max-width: $break-small)
+        display: none
+  
+      &:hover, &:active
+        transition: opacity .4s ease-in-out
+        opacity: .8
+      
+      @media screen and (max-width: $break-medium)
+        display: inline-block
+        margin-right: 20px
+      
+      svg
+        fill: $menu-bar-text-color
+        height: 15px
+        width: 15px
+    
+  .close-overlay
+    bottom: 0
+    color: $menu-bar-text-color
+    display: none
+    font-family: $secondary-font
+    height: 100vh
+    left: 0
+    line-height: 60px
+    text-align: center
+    transform: rotate(180deg)
+    -ms-writing-mode: tb-lr
+    writing-mode: vertical-lr
+    position: absolute
+    right: 0
+    top: 0
+    width: 100%
+    
+    @media screen and (max-width: $break-medium)
+      height: 70px
+      line-height: 70px
+      transform: none
+      writing-mode: initial
+      
+  
+.left-panel
+  +pie-clearfix
+  background: $content-area-background-color
+  max-width: calc(50% + 30px)
+  min-height: 100vh
+  padding: 60px 80px 60px 140px
+  position: relative
+  width: 100%
+  z-index: 1
+  
+  @media screen and (max-width: $break-medium)
+    max-width: 100%
+    padding: 20px 0 120px
+
+  &.full-panel
+    max-width: 100%
+    
+    @media screen and (max-width: $break-medium)
+      padding: 20px 20px 120px
+  
+.right-panel
+  background: $image-area-background-color
+  bottom: 0
+  height: 100vh
+  left: calc(50% + 30px)
+  max-width: calc(50% - 30px)
+  position: fixed
+  right: 0
+  top: 0
+  width: 100%
+  z-index: 1
+  
+  @media screen and (max-width: $break-medium)
+    background: none
+  
+.navigation-overlay, .cart-overlay
+  background: $content-area-background-color
+  bottom: 0
+  height: 100vh
+  left: -50%
+  max-width: calc(50% - 30px)
+  opacity: 0
+  padding: 60px 80px
+  position: fixed
+  right: 50%
+  top: 0
+  transition: all .3s ease-in-out
+  visibility: hidden
+  width: 100%
+  z-index: 2
+  
+  @media screen and (max-width: $break-medium)
+    bottom: 0
+    height: auto
+    left: 0
+    max-width: 100%
+    padding: 20px
+    right: 0
+    text-align: center
+    top: 100vh
+    visibility: visible
+    
+    .cart-footer
+      display: none
+
+  &.open
+    bottom: 0
+    display: block
+    left: 60px
+    opacity: 1
+    overflow-y: scroll
+    position: fixed
+    top: 0
+    visibility: visible
+    
+    @media screen and (max-width: $break-medium)
+      left: 0
+    
+    .cart-footer
+      display: block
+
+.navigation-overlay.open
+  +flexbox
+  +flex-direction(column)
+
+  @media screen and (max-width: $break-medium)
+    padding: 20px 20px 100px
+    
+  @media screen and (max-width: $break-small)
+    display: block
+    
+.cart-overlay.open
+  @media screen and (max-width: $break-medium)
+    padding-top: 40px
+    
+.navigation-items
+  font-size: 30px
+  line-height: 40px
+  
+  li
+    display: block
+    margin-bottom: 10px
+    
+    @media screen and (max-width: $break-medium)
+      text-align: center
+  
+    a
+      color: $primary-text-color
+
+.menu-social-links
+  font-family: $secondary-font
+  font-size: 15px
+  margin-top: 30px
+  line-height: 30px
+  
+  @media screen and (max-width: $break-medium)
+    text-align: center
+  
+  a
+    color: $link-color
+        
+.store-link
+  color: $primary-text-color
+  display: block
+  font-size: 30px
+  margin-bottom: 140px
+  
+  @media screen and (max-width: $break-medium)
+    margin: 24px auto 60px
+    text-align: center
+    
+  @media screen and (max-width: $break-small)
+    font-size: 20px
+    margin-bottom: 40px
+
+.store-logo
+  max-width: 100%
+  
+  @media screen and (max-width: $break-medium)
+    max-height: 120px
+  
+.page-content
+  display: block
+  
+.category-nav-product
+  display: none
+  
+.menu-credit
+  font-family: $secondary-font
+  font-size: 13px
+  margin-top: auto
+  padding-top: 100px
+  
+  @media screen and (max-width: $break-medium)
+    margin-top: 50px
+    padding-top: 0
+  
+  a
+    color: $link-color
+
+h1, h2, h3, h4
+  color: $primary-text-color
+  
+h1
+  font-weight: normal
+  
+  @media screen and (max-width: $break-medium)
+    float: none
+    font-size: 30px
+    margin-bottom: 54px
+    text-align: center
+    width: 100%
+  
+  @media screen and (max-width: $break-small)
+    font-size: 30px 
+    
+.custom-title
+  float: left
+  font-size: 30px
+  font-weight: normal
+  margin: 0
+  padding: 0
+  width: 400px
+  
+  @media screen and (max-width: $break-medium)
+    float: none
+    font-size: 30px
+    margin-bottom: 54px
+    text-align: center
+    width: 100%
+  
+  @media screen and (max-width: $break-small)
+    font-size: 30px 
+
+.custom-panel
+  float: left
+  font-family: $secondary-font
+  font-size: 15px
+  line-height: 24px
+  max-width: 500px
+  width: 100%
+  
+  @media screen and (max-width: $break-medium)
+    float: none
+    margin: 0 auto
+    padding: 0 20px
+  
+  
+.custom-page-content
+  img, iframe
+    display: block
+    max-width: 100%
+    
+  ol, ul
+    margin: 1em 0 0 20px
+    padding: 0
+  
+  ol
+    list-style-type: decimal
+    
+  ul
+    list-style-type: disc
+      
+  a
+    color: $link-color
+    
+.errors
+  color: $error-message-color
+  font-family: $secondary-font
+  font-size: 13px
+  line-height: 20px
+  margin-bottom: 40px
+  text-align: center
+  
+  @media screen and (max-width: $break-medium)
+    padding: 0 20px
+  
+.page-overlay
+  background: $overlay-color
+  bottom: 0
+  display: none
+  height: 100%
+  left: 0
+  opacity: .8
+  position: absolute
+  right: 0
+  top: 0
+  width: 100%
+  z-index: 1
+  
+.continue-shopping
+  display: block
+  margin-top: 40px
+  max-width: 300px
+  width: 100%
+  
+  @media screen and (max-width: $break-medium)
+    margin: 40px auto

@@ -1,0 +1,74 @@
+{% assign product_status = '' %}
+{% case product.status %}
+	{% when 'active' %}
+		{% if product.on_sale %}{% assign product_status = 'On sale' %}{% endif %}
+	{% when 'sold-out' %}
+		{% assign product_status = 'Sold out' %}
+	{% when 'coming-soon' %}
+		{% assign product_status = 'Coming soon' %}
+{% endcase %}
+
+<a class="product-back-to-products" href="/products" title="Back to Products">Back to Shop</a>
+
+<h1 class="product-title">{{ page.name }}</h1>
+
+<div class="right-panel product-image-panel{% if theme.product_image_display == 'Fill' %} image-fill{% endif %}">
+  {% if product.images.size > 0 %}
+    <div class="full-product-images">
+    	 {% for image in product.images %}
+  	    <img class="carousel-cell full-product-image" src="{{ image | product_image_url | constrain: 1500 }}">
+      {% endfor %}
+    </div>
+    {% if product.images.size > 1 %}
+  	  <div class="product-thumbnails">
+      	 {% for image in product.images %}
+          <div class="carousel-cell product-thumbnail">
+            <div class="product-thumbnail-link" style="background-image: url('{{ image | product_image_url | constrain: 300 }}');"></div>
+          </div>
+    	  {% endfor %}
+  	  </div>
+    {% endif %}
+  {% endif %}
+</div>
+          
+<h2 class="product-price"><span class="price-holder">{{ product.default_price | money_with_sign }}</span> {% if product_status != blank %}<span class="status-text">/ {{ product_status }}</span>{% endif %}</h2>
+
+{% if product.status == 'active' %}
+  <form action="/cart" class="product-form" method="post">
+    {% if product.has_default_option %}
+      {{ product.option | hidden_option_input }}
+    {% else %}
+      {% if theme.product_option_display == 'Dropdown' %}
+        <div class="select product-select">
+          <select id="option" class="product-options" name="[cart][add][id]">
+            {% for option in product.options %}
+              <option value="{{ option.id }}" data-option-price="{{ option.price | money_with_sign | strip_html }}"{% if option.sold_out %} disabled="disabled"{% endif %}>{{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money_with_sign }}{% endif %} {% if option.sold_out %}(Sold out){% endif %}</option>
+            {% endfor %}
+          </select>
+          <div class="arrow-holder">
+            <svg width="10" height="6" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M9.852 1.536c.2-.19.2-.496 0-.684L9.135.17c-.197-.19-.518-.19-.715 0L5.016 3.463 1.582.142c-.2-.19-.52-.19-.717 0L.148.825c-.197.188-.197.494 0 .684l4.508 4.35c.2.187.52.187.717 0l4.48-4.324z" /></svg>
+          </div>
+        </div>
+      {% else %}
+        <input type="hidden" name="[cart][add][id]" id="option" class="hidden-product-option">
+        <ul class="options-list">
+          {% for option in product.options %}
+            <li class="option-item{% if option.sold_out %} sold-out{% endif %}" data-option-id="{{ option.id }}" data-option-price="{{ option.price | money_with_sign | strip_html }}">
+              {{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money_with_sign }}{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endif %}
+    {{ product | product_quantity_input, 1, 'product-quantity', 'product-quantity' }}
+    <button class="button add-to-cart-button" type="submit" data-added-text="Added!" data-adding-text="Adding...">
+      <span class="status-text">Add to Cart</span>
+    </button>
+  </form>
+{% endif %}
+
+<div class="product-description">
+	{% if product.description != blank %}
+		{{ product.description | paragraphs }}
+	{% endif %}
+</div>

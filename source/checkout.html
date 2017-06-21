@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ page.name }} | {{ store.name }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
+    <script>
+      function checkout() {
+        if (top != self) {
+          top.location.replace(self.location.href);
+        }
+        else {
+          document.checkout_form.submit();
+        }
+      }
+    </script>  
+    {{ head_content }}
+  </head>
+  <body class="standalone-page checkout-page" onload="checkout();">
+    <div class="message-holder checkout-message">
+	    <h1 class="standalone-header checkout-header">One moment...</h1>
+	    {% checkoutform %}
+	      <noscript>
+	        <button type="submit" name="checkout" title="Checkout">Checkout</button>
+	      </noscript>
+	    {% endcheckoutform %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+@import 'flexbox'
+
+$menu-bar-background-color: #{"{{ theme.menu_bar_background_color }}"}
+$menu-bar-text-color: #{"{{ theme.menu_bar_text_color }}"}
+$content-area-background-color: #{"{{ theme.content_area_background_color }}"}
+$image-area-background-color: #{"{{ theme.image_area_background_color }}"}
+$overlay-color: #{"{{ theme.overlay_color }}"}
+$button-background-color: #{"{{ theme.button_background_color }}"}
+$button-text-color: #{"{{ theme.button_text_color }}"}
+$link-color: #{"{{ theme.link_color }}"}
+$product-thumbnail-border-color: #{"{{ theme.product_thumbnail_border_color }}"}
+$primary-text-color: #{"{{ theme.primary_text_color }}"}
+$secondary-text-color: #{"{{ theme.secondary_text_color }}"}
+$error-message-color: #{"{{ theme.error_message_color }}"}
+
+$primary-font: #{"{{ theme.primary_font }}"}
+$secondary-font: #{"{{ theme.secondary_font }}"}
+
+$break-large: 1200px
+$break-medium: 1025px
+$break-small: 668px
+$break-extra-small: 360px
+
+@mixin all-transitions
+  +transition(.2s linear)
+  
+@mixin vertical-align
+  +transform(translateY(-50%))
+  position: relative
+  top: 50%
+  
+@mixin keyframes($animation)
+  @-webkit-keyframes #{$animation}
+    @content
+
+  @keyframes #{$animation}
+    @content
+    
+@mixin animation($str...)
+  -webkit-animation: $str
+  animation: $str
+
+@mixin transform($str...)
+  -webkit-transform: $str
+  transform: $str
+  
+@mixin transition($transition...)
+  -webkit-transition: $transition
+  transition: $transition
+
+@mixin appearance($str)
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+  
+@mixin pie-clearfix
+  &:after
+    content: ""
+    display: table
+    clear: both

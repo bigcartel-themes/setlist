@@ -1,0 +1,289 @@
+@import 'variables'
+
+
+.category-header
+  color: $secondary-text-color
+  font-family: $secondary-font
+  font-size: 13px
+  font-weight: normal
+  
+  @media screen and (max-width: $break-medium)
+    margin-bottom: 25px
+    text-align: center
+  
+  > a
+    color: $secondary-text-color
+
+.category-card
+  position: relative
+  
+  &:before
+    transition: width 0.8s ease-out, left 0.8s ease-out
+    position: absolute
+    top: 50%
+    overflow: hidden
+    left: -10px
+    width: 0
+    height: 2px
+    content: '\a0'
+    background-color: $primary-text-color
+    z-index: -1
+  
+  &.active:before
+    width: 20px
+  
+  &.active .category-link
+    left: 20px
+    
+  .category-link
+    transition: all .8s ease-in-out
+    +pie-clearfix
+    color: $primary-text-color
+    display: block
+    font-size: 20px
+    left: 0
+    line-height: 30px
+    padding: 4px 2px
+    position: relative
+
+.product-list
+  &:after
+    content: none
+    display: none
+
+.product-card
+  cursor: pointer
+  display: block
+  position: relative
+  
+  &:before
+    transition: width 0.4s ease-out, left 0.4s ease-out
+    position: absolute
+    top: 50%
+    overflow: hidden
+    left: -10px
+    width: 0
+    height: 2px
+    content: '\a0'
+    background-color: $primary-text-color
+    z-index: -1
+  
+  &:hover:before
+    left: -10px
+    width: 20px
+  
+  &:hover .product-link
+    left: 20px
+    
+  &:hover .product-price
+    opacity: 1
+    
+  .product-link
+    transition: all .4s ease-in-out
+    +pie-clearfix
+    color: $primary-text-color
+    display: block
+    font-size: 20px
+    left: 0
+    line-height: 30px
+    padding: 7px 2px
+    position: relative
+  
+  .product-title
+    padding-right: 20px
+    z-index: 5
+  
+  .product-price
+    font-size: 15px
+    transition: opacity .4s linear
+    opacity: 0
+    white-space: nowrap
+    z-index: 5
+
+
+
+
+
+
+
+.flickity-page-dots
+  display: none !important
+
+.product-list
+  .flickity-slider
+    +transform(none !important)
+    position: relative
+
+.product-card
+  position: relative !important
+  left: auto !important
+  font-size: 15px
+  line-height: 1
+  cursor: pointer
+  -webkit-transition: opacity 0.3s ease-in
+  transition: opacity 0.3s ease-in
+  display: block !important
+
+@media only screen and (min-width: $break-medium)
+  .left-panel .product-list::after
+    content: 'flickity'
+  
+  .image-list-container .flickity-viewport 
+    position: relative
+    pointer-events: none
+  
+  .image-list-container .flickity-slider 
+    -webkit-transform: none !important
+    transform: none !important
+    position: absolute
+    width: 100%
+    height: 100%
+  
+  .image-list-container .carousel-cell 
+    opacity: 0
+    z-index: -1
+    position: relative
+    left: 0 !important
+    -webkit-transition: opacity 0.6s linear, z-index 0.9s linear 0.2s
+    transition: opacity 0.6s linear, z-index 0.9s linear 0.2s
+  
+  .image-list-container .carousel-cell.is-selected
+    opacity: 1
+    z-index: 0
+    -webkit-transition: opacity 0.6s linear
+    transition: opacity 0.6s linear
+  
+  .image-list-container .flickity-page-dots 
+    display: none
+  
+.nav-link
+  display: block
+
+.image-list-container
+  background-repeat: repeat
+  background-size: 100px
+  background-color: $image-area-background-color
+  bottom: 0
+  height: 100vh
+  left: calc(50% + 30px)
+  max-width: calc(50% - 30px)
+  position: fixed
+  right: 0
+  top: 0
+  width: 100%
+  z-index: 1
+
+.product-list .flickity-viewport
+  height: auto !important
+
+.image-list-container
+    
+  .product-image-background
+    background-position: 50% 50%
+    background-repeat: no-repeat
+    background-size: cover
+    object-fit: contain
+    padding: 60px
+    height: 100vh
+    width: 100%
+    
+    &.image-fill
+      object-fit: cover
+      padding: 0
+    
+  .product-details
+    display: none
+  
+  .carousel-cell
+    height: 100vh
+    width: 100%
+    
+  &.image-fill
+    .product-image-background
+      object-fit: cover
+      padding: 0
+
+@media screen and (max-width: $break-medium)
+  .product-list
+    display: none
+
+  .image-list-container
+    bottom: auto
+    height: 100%
+    left: auto
+    min-height: 500px
+    max-width: 100%
+    padding-bottom: 0
+    position: relative
+    right: auto
+    
+    &.image-fill
+      background: none
+    
+    .flickity-viewport
+      position: absolute
+      width: 100%
+      
+    .carousel-cell
+      +flexbox
+      +align-items(center)
+      +flex-direction(column)
+      +justify-content(flex-start)
+      height: 100%
+      padding: 0 10px
+      width: 65%
+      
+      &.is-selected .product-image-background
+        transform: scale(1)
+      
+    .product-image-background
+      max-width: 100%
+      max-height: 80%
+      padding: 20px
+      transform: scale(.9)
+      transition: transform 0.3s
+      
+    .product-details
+      color: $primary-text-color
+      display: block
+      font-family: $primary-font
+      font-size: 20px
+      font-weight: normal
+      margin-top: 20px
+      padding: 0 10px
+      text-align: center
+      
+      .product-price
+        font-size: 15px
+        margin-top: 10px
+        
+    &.image-fill .product-image-background
+      max-height: 85%
+      width: 85%
+
+@media screen and (max-width: $break-medium) and (orientation: landscape)
+  .image-list-container
+    
+    .product-image-background
+      max-height: 440px
+      
+    .carousel-cell
+      width: 60%
+        
+@media screen and (max-width: $break-small)
+  .image-list-container
+    padding-bottom: 40.33%
+    
+    .carousel-cell
+      padding: 0 10px
+      
+      .product-image-background
+        margin-top: 20px
+        max-height: 55%
+        padding: 0
+        
+    .product-details
+      font-size: 16px
+  
+    &.image-fill .product-image-background
+      width: 85%

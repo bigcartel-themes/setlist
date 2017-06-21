@@ -1,0 +1,206 @@
+{
+  "name": "Setlist",
+  "version": "0.0.114",
+  "images": [
+    {
+      "variable": "logo",
+      "label": "Logo",
+      "description": "Adds your logo to the header"
+    }
+  ],
+  "fonts": [
+    {
+      "variable": "primary_font",
+      "label": "Primary Font",
+      "default": "PT Serif"
+    },
+    {
+      "variable": "secondary_font",
+      "label": "Secondary Font",
+      "default": "Work Sans"
+    }
+  ],
+  "colors": [
+    {
+      "variable": "menu_bar_background_color",
+      "label": "Menu bar background",
+      "default": "#F8F8F8"
+    },
+    {
+      "variable": "menu_bar_text_color",
+      "label": "Menu bar text",
+      "default": "#333333"
+    },
+    {
+      "variable": "content_area_background_color",
+      "label": "Content area background",
+      "default": "#FFFFFF"
+    },
+    {
+      "variable": "image_area_background_color",
+      "label": "Image area background",
+      "default": "#FAFAFA"
+    },
+    {
+      "variable": "overlay_color",
+      "label": "Overlay Background",
+      "default": "#FAFAFA"
+    },
+    {
+      "variable": "button_background_color",
+      "label": "Button background",
+      "default": "#333333"
+    },
+    {
+      "variable": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    },
+    {
+      "variable": "product_thumbnail_border_color",
+      "label": "Product thumbnail border",
+      "default": "#333333"
+    },
+    {
+      "variable": "link_color",
+      "label": "Links",
+      "default": "#999999"
+    },
+    {
+      "variable": "primary_text_color",
+      "label": "Primary text",
+      "default": "#333333"
+    },
+    {
+      "variable": "secondary_text_color",
+      "label": "Secondary text",
+      "default": "#999999"
+    },
+    {
+      "variable": "error_message_color",
+      "label": "Error messages",
+      "default": "#CB4D4D"
+    }
+  ],
+  "options": [
+    {
+      "variable": "product_image_display",
+      "label": "Product Image Display",
+      "type": "select",
+      "options": ["Fill", "Fit"],
+      "default": "Fill",
+      "description": "Determines how product images are displayed"
+    },
+    {
+      "variable": "product_option_display",
+      "label": "Product Option Display",
+      "type": "select",
+      "options": ["Dropdown", "List"],
+      "default": "List",
+      "description": "Determines how product options are displayed"
+    },
+    {
+      "variable": "enable_categories",
+      "label": "Enable categories",
+      "type": "boolean",
+      "default": true,
+      "description": "Enables browsing products by category"
+    },
+    {
+      "variable": "twitter_url",
+      "label": "Twitter URL",
+      "type": "text",
+      "description": "Ex: http://twitter.com/bigcartel"
+    },
+    {
+      "variable": "facebook_url",
+      "label": "Facebook URL",
+      "type": "text",
+      "description": "Ex: http://facebook.com/bigcartel"
+    },
+    {
+      "variable": "tumblr_url",
+      "label": "Tumblr URL",
+      "type": "text",
+      "description": "Ex: http://bigcartel.tumblr.com"
+    },
+    {
+      "variable": "instagram_url",
+      "label": "Instagram URL",
+      "type": "text",
+      "description": "Ex: http://instagram.com/bigcartel"
+    },
+    {
+      "variable": "pinterest_url",
+      "label": "Pinterest URL",
+      "type": "text",
+      "description": "Ex: http://pinterest.com/bigcartel"
+    }
+  ],
+  "checkout": {
+    "header_image": "{{ logo }}",
+    "header_image_max_width": "300px",
+    "header_image_max_height": "100px",
+    "title_font": "{{ primary_font }}",
+    "title_font_weight": "normal",
+    "title_font_size": "22px",
+    "title_color": "{{ primary_text_color }}",
+    "title_background_color": "{{ content_area_background_color }}",
+    "title_vertical_padding": "27px",
+    "background_color": "{{ content_area_background_color }}",
+    "body_font": "{{ secondary_font }}",
+    "body_font_size": "14px",
+    "step_border_color": "{{ content_area_background_color }}",
+    "step_header_color": "{{ primary_text_color }}",
+    "step_border_width": "4px",
+    "step_border_style": "solid",
+    "step_border_radius": "0px",
+    "step_inactive_header_color": " {{ primary_text_color }}",
+    "step_header_font": "{{ primary_font }}",
+    "step_background_color": "{{ content_area_background_color }}",
+    "content_area_background_color": "{{ content_area_background_color }}",
+    "content_header_background_color": "{{ content_area_background_color }}",
+    "content_header_color": "{{ primary_text_color }}",
+    "content_color": "{{ primary_text_color }}",
+    "content_header_font_size": "18px",
+    "content_border_color": "transparent", 
+    "content_border_radius": "0px",
+    "error_background_color": "#ea4859",
+    "error_color": "#ffffff",
+    "error_border_radius": "0px",
+    "error_border_color": "#ea4859",
+    "input_focus_color": "#000000",
+    "input_focus_background_color": "#ffffff",
+    "input_focus_border_color": "#777777",
+    "input_error_border_color": "#ea4859",
+    "input_color": "#000000",
+    "input_error_color": "#000000",
+    "input_border_color": "#bfbfbf",
+    "input_background_color": "#ffffff",
+    "input_error_background_color": "#ffffff",
+    "input_border_radius": "0px",
+    "input_border_width": "2px",
+    "input_font": "{{ secondary_font }}",
+    "button_color": "{{ button_text_color }}",
+    "button_border_width": "0px",
+    "button_border_radius": "0px",
+    "button_font": "{{ secondary_font }}",
+    "button_hover_color": "{{ button_text_color }}",
+    "button_color": "{{ button_color }}",
+    "button_hover_background_color": "{{ button_color }}",
+    "button_border_color": "{{ button_color }}",
+    "button_hover_border_color": "{{ button_color }}",
+    "button_text_transform": "none",
+    "link_color": "{{ primary_text_color }}",
+    "link_hover_color": "{{ link_color }}",
+    "step_header_color": "{{ primary_text_color }}",
+    "step_header_font_size": "18px",
+    "summary_color": "{{ primary_text_color }}",
+    "summary_secondary_color": "{{ primary_text_color }}",
+    "summary_item_border_color": "{{ content_area_background_color }}",
+    "summary_item_list_border_color": "{{ content_area_background_color }}",
+    "summary_submit_background_color": "{{ content_area_background_color }}",
+    "summary_submit_border_color": "{{ content_area_background_color }}",
+    "summary_submit_border_width": "4px"
+  }
+}

@@ -1,0 +1,278 @@
+@import 'variables'
+
+
+.product-back-to-products
+  color: $secondary-text-color
+  font-family: $secondary-font
+  font-size: 13px
+  
+  @media screen and (max-width: $break-medium)
+    display: block
+    text-align: center
+  
+h1.product-title
+  font-weight: normal
+  font-size: 30px
+  margin: 0
+  margin-top: 10px
+  padding: 0
+  
+  @media screen and (max-width: $break-medium)
+    margin-bottom: 30px
+    text-align: center
+    
+  @media screen and (max-width: $break-medium)
+    font-size: 20px
+  
+h2.product-price
+  font-size: 20px
+  font-weight: normal
+  margin: 0 
+  margin-bottom: 40px
+  margin-top: 10px
+  padding: 0
+  
+  @media screen and (max-width: $break-medium)
+    margin-top: 20px
+    text-align: center
+    
+  @media screen and (max-width: $break-small)
+    margin-top: 40px
+  
+.product-description
+  font-family: $secondary-font
+  font-size: 15px
+  line-height: 24px
+  
+  @media screen and (max-width: $break-medium)
+    margin: 0 auto 
+    max-width: 600px
+    padding: 0 20px
+    
+  img, iframe
+    display: block
+    max-width: 100%
+    
+  ol, ul
+    margin: 1em 0 0 20px
+    padding: 0
+  
+  ol
+    list-style-type: decimal
+    
+  ul
+    list-style-type: disc
+
+  a
+    color: $link-color
+  
+.product-form
+  margin-bottom: 40px
+  
+  @media screen and (max-width: $break-medium)
+    max-width: 600px
+    margin: 0 auto 40px
+    padding: 0 20px
+  
+.product-select
+  display: inline-block
+  max-width: 260px
+  margin-bottom: 10px
+  margin-right: 25px
+  width: 100%
+  
+  @media screen and (max-width: $break-medium)
+    display: block
+    margin: 0 auto 10px
+    max-width: 75%
+    
+  @media screen and (max-width: $break-small)
+    max-width: 100%
+
+.options-list
+  font-family: $secondary-font
+  margin: 0 0 40px
+  padding: 0
+  
+  @media screen and (max-width: $break-medium)
+    text-align: center
+  
+  .option-item
+    border-bottom: 2px solid transparent
+    cursor: pointer
+    display: inline-block
+    margin: 0 5px 10px
+    padding-bottom: 2px
+    transition: all .3s linear
+    
+    &:hover
+      border-bottom: 2px solid $primary-text-color
+    
+    &.selected
+      border-bottom: 2px solid $primary-text-color
+    
+    &.sold-out
+      border-bottom: 2px solid transparent !important
+      color: $secondary-text-color
+      cursor: default
+      text-decoration: line-through
+      
+.product-quantity
+  display: none
+  
+.add-to-cart-button
+  display: inline-block
+  max-width: 260px
+  width: 100%
+  
+  @media screen and (max-width: $break-medium)
+    display: block
+    margin: 0 auto
+    max-width: 75%
+    
+  @media screen and (max-width: $break-small)
+    max-width: 100%
+    
+    
+.product-image-panel
+
+  .full-product-images
+    background-repeat: repeat
+    background-size: 100px
+    background-color: $image-area-background-color
+  
+  .full-product-image
+    background-size: contain
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: 50% 50%
+    position: absolute
+    bottom: 0
+    height: 100vh
+    left: 0
+    padding: 60px
+    object-fit: contain
+    right: 0
+    top: 0
+    transition: background-image 0.2s linear
+    width: 100%
+    z-index: 2
+    
+    @media screen and (max-width: $break-medium)
+      height: 100%
+  
+  &.image-fill
+    .full-product-image
+      object-fit: cover
+      padding: 0
+    
+  
+.product-thumbnails
+  bottom: 30px
+  cursor: pointer
+  position: absolute
+  text-align: center
+  width: 100%
+  z-index: 3
+  
+  &::after
+    content: 'flickity'
+    display: none
+  
+  @media screen and (max-width: $break-medium)
+    bottom: auto
+    padding: 20px 0
+    position: relative
+    
+    .flickity-slider
+      cursor: pointer 
+      margin-top: 0
+
+.product-thumbnail
+  +all-transitions
+  border: 2px solid $product-thumbnail-border-color
+  border-radius: 50%
+  cursor: pointer
+  display: inline-block
+  height: 50px
+  margin: 0 10px
+  opacity: .6
+  overflow: hidden
+  padding: 3px
+  width: 50px
+
+  &.is-nav-selected
+    opacity: 1
+    
+  &:hover
+    opacity: 1
+  
+  .product-thumbnail-link
+    background-size: cover
+    background-position: 50% 50%
+    background-repeat: no-repeat
+    border-radius: 50%
+    display: block
+    height: 100%
+    width: 100%
+  
+@media only screen and (min-width: $break-medium)
+  .full-product-images .flickity-viewport
+    position: relative
+    pointer-events: none
+  
+  .full-product-images .flickity-slider 
+    height: 100%
+    position: absolute
+    transform: none !important
+    width: 100%
+    
+  .full-product-images .carousel-cell 
+    left: 0 !important
+    opacity: 0
+    position: relative
+    transition: opacity 0.6s linear, z-index 0.9s linear 0.2s
+    z-index: -1
+
+  .full-product-images .carousel-cell.is-selected
+    opacity: 1
+    transition: opacity 0.6s linear
+    z-index: 0
+
+@media screen and (max-width: $break-medium)  
+  .product-image-panel
+    background-repeat: repeat
+    background-size: 100px
+    background-color: $image-area-background-color
+    height: auto
+    position: relative
+    margin: 0 auto
+    left: 0
+    max-width: 100%
+    right: 0
+  
+    &.image-fill
+      background: none
+    
+    .full-product-images
+      background: none
+      margin: 0 auto
+      max-width: 600px
+      
+    .full-product-image
+      height: auto
+      
+    .flickity-slider
+      margin: 0
+      
+    .flickity-viewport
+      transition: height .5s
+      
+    .product-thumbnails
+      padding-top: 0
+      top: -20px
+      
+    &.image-fill 
+      .product-thumbnails
+        padding-top: 20px
+        top: 0
