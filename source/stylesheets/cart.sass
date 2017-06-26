@@ -34,6 +34,7 @@
   +appearance(none)
   background: $content-area-background-color
   border: 0px
+  color: $secondary-text-color
   display: block
   font-family: $secondary-font
   padding: 10px
@@ -96,17 +97,19 @@
 .item-details-name
   color: $primary-text-color
   font-family: $primary-font
-  font-size: 15px
+  font-size: 20px
   margin-bottom: 15px
 
 .item-details-option
+  color: $secondary-text-color
   font-family: $secondary-font
-  font-size: 13px
+  font-size: 15px
   margin-bottom: 15px
   
 .item-details-price
+  color: $secondary-text-color
   font-family: $secondary-font
-  font-size: 13px
+  font-size: 15px
   
 .cart-footer
   transition: all .3s ease-in-out
@@ -149,7 +152,6 @@
   
 .checkout-btn
   color: $button-text-color
-  max-width: 500px
   width: 100%
   
   .checkout-btn-icon
@@ -183,6 +185,7 @@
   
   select
     border: none
+    color: $primary-text-color
     font-size: 15px
     padding-left: 24px
     padding-right: 20px
@@ -191,22 +194,26 @@
     left: 0
     position: absolute
  
-
 .cart-discounts
   +pie-clearfix
   height: 30px
   text-align: left
 
-.cancel-discount
+.cart-discount-status
   float: left
+  
+.cancel-discount
+  color: $primary-text-color
   font-family: $secondary-font
   font-size: 15px
   line-height: 30px
   
 .cancel-discount-button
+  fill: $primary-text-color
   height: 13px
   margin-right: 8px
   position: relative
+  top: 2px
   width: 13px
   
 .apply-discount
@@ -226,7 +233,7 @@
   font-family: $secondary-font
   font-size: 15px
   height: 30px
-  margin-left: 10px
+  margin-left: 8px
   padding: 0
   text-align: left
   width: 220px
@@ -235,7 +242,7 @@
     outline: none
 
 .cart-shipping + .cart-discounts
-  margin-top: 20px
+  margin-top: 5px
     
 .cart-empty-holder
   position: absolute

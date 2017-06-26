@@ -58,23 +58,21 @@
           {% if cart.discount.enabled %}
             <div class="cart-discounts">
               {% if cart.discount.pending %}
-                <a href="#" title="Apply discount" class="apply-discount"><svg class="apply-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg></a>
-                <input autocomplete="off" class="cart-discount-code" placeholder="Enter discount code..." name="cart[discount_code]" type="text"{% if cart.discount.code %} value="{{ cart.discount.code }}"{% endif %}>
+                <div class="cart-discount-status">
+                  <a href="#" title="Apply discount" class="apply-discount"><svg class="apply-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg></a>
+                  <input autocomplete="off" class="cart-discount-code" placeholder="Enter discount code..." name="cart[discount_code]" type="text"{% if cart.discount.code %} value="{{ cart.discount.code }}"{% endif %}>
+                </div>
               {% else %}
-                {% if cart.discount.free_shipping %}
+                <div class="cart-discount-status">
                   <a href="#" title="Remove discount" class="cancel-discount">
-                    <svg class="cancel-discount-button"  viewBox="0 0 10 10"><path d="M9.24 7.83L6.41 5l2.83-2.83L7.83.76 5 3.59 2.17.76.76 2.17 3.59 5 .76 7.83l1.41 1.41L5 6.41l2.83 2.83 1.41-1.41" /></svg> Free shipping discount!
+                    <svg class="cancel-discount-button"  viewBox="0 0 10 10"><path d="M9.24 7.83L6.41 5l2.83-2.83L7.83.76 5 3.59 2.17.76.76 2.17 3.59 5 .76 7.83l1.41 1.41L5 6.41l2.83 2.83 1.41-1.41" /></svg> {% if cart.discount.free_shipping %}Free shipping{% else %}{{ cart.discount.name }}{% endif %}
                   </a>
-                {% else %}
-                  <a href="#" title="Remove discount" class="cancel-discount">
-                    <svg class="cancel-discount-button"  viewBox="0 0 10 10"><path d="M9.24 7.83L6.41 5l2.83-2.83L7.83.76 5 3.59 2.17.76.76 2.17 3.59 5 .76 7.83l1.41 1.41L5 6.41l2.83 2.83 1.41-1.41" /></svg> {{ cart.discount.name }}
-                  </a>
-                {% endif %}
+                </div>
               {% endif %}
               {% if cart.discount.pending %}
-                <h4 class="cart-discount-amount"></h4>
+                <h4 class="cart-discount-amount">{{ 0 | money_with_sign }}</h4>
               {% elsif cart.discount.free_shipping %}
-                <h4 class="cart-discount-amount"><span class="small-message">Free shipping</span></h4>
+                <h4 class="cart-discount-amount"><span></span></h4>
               {% else %}
                 <h4 class="cart-discount-amount"><span>- {{ cart.discount.amount | money_with_sign }}</span></h4>
               {% endif %}
