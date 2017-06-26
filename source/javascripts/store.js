@@ -98,16 +98,9 @@ function openOverlay(type) {
     });
     $('html').css('overflow-y','hidden');
     $('.left-panel').css('height','100vh');
-    
-    if (inPreview) { 
-      document.location.href = "/cart";
-    }
-    else { 
-      $('.cart-overlay').load("/cart?" + $.now() + " .left-panel > *", function() {
-        $('.cart-overlay').toggleClass('open');
-      });
-    }
-    
+    $('.cart-overlay').load("/cart?" + $.now() + " .left-panel > *", function() {
+      $('.cart-overlay').toggleClass('open');
+    });
   }
   if (type == 'navigation') { 
     $('.page-overlay').fadeIn('fast');
@@ -130,9 +123,11 @@ function closeOverlay() {
   $('.navigation-overlay').removeClass('open');
 }
 $('.open-cart').click(function(e) { 
-  e.preventDefault();
-  if (window.location.href.indexOf("/cart") == -1) {
-    openOverlay('cart');
+  if (!inPreview) { 
+    e.preventDefault();
+    if (window.location.href.indexOf("/cart") == -1) {
+      openOverlay('cart');
+    }
   }
 });
 function animateLeft($src, $tgt){
@@ -187,89 +182,100 @@ var updateTotals = function(cart) {
     if (cart.shipping.amount) {
       var shipping_amount = '<span>'+Format.money(cart.shipping && cart.shipping.amount ? cart.shipping.amount : 0, true, true)+'</span>';
     }
+    else {
+      var shipping_amount = '<span>'+Format.money(0, true, true)+'</span>';
+    }
     $('.cart-shipping-amount').html(shipping_amount);
   }
-  if ($('.cart-discount-amount').length) { 
-    if (cart.discount.amount) {
-      var discount_amount = '<span>- '+Format.money(cart.discount && cart.discount.amount ? cart.discount.amount : 0, true, true)+'</span>';
+  if ($('.cart-discount-amount').length) {
+    if (cart.discount) { 
+      $('.cart-discount-status').html('<a href="#" title="Remove discount" class="cancel-discount"><svg class="cancel-discount-button" viewBox="0 0 10 10"><path d="M9.24 7.83L6.41 5l2.83-2.83L7.83.76 5 3.59 2.17.76.76 2.17 3.59 5 .76 7.83l1.41 1.41L5 6.41l2.83 2.83 1.41-1.41" /></svg>' + cart.discount.name + '</a>');
+      if (cart.discount.type == 'free_shipping') { 
+        var discount_amount = '<span></span>';
+      }
+      else { 
+        var discount_amount = '<span>- '+Format.money(cart.discount && cart.discount.amount ? cart.discount.amount : 0, true, true)+'</span>';
+      }
+    }
+    else { 
+      $('.cart-discount-status').html('<a href="#" title="Apply discount" class="apply-discount"><svg class="apply-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg></a><input autocomplete="off" class="cart-discount-code" placeholder="Enter discount code..." name="cart[discount_code]" type="text">');
+      var discount_amount = '<span>'+Format.money(0, true, true)+'</span>';
     }
     $('.cart-discount-amount').html(discount_amount);
   }
 }
 
-$('body').on( 'click', '.qty-button', function() {
-  var $t = $(this)
-  , input = $(this).parent().find('input')
-  , val = parseInt(input.val())
-  , valMin = 1
-  , item_id = $(this).parent().data("cart-id");
-  if (isNaN(val) || val < valMin) {
-    var new_val = valMin;
-  }
-  if ($t.data('func') == 'plus') {
-    var new_val = val + 1;
-  }
-  else {
-    if (val > valMin) {
-      var new_val = val - 1;
+$('body')
+  .on( 'click', '.qty-button', function() {
+    var $t = $(this)
+    , input = $(this).parent().find('input')
+    , val = parseInt(input.val())
+    , valMin = 1
+    , item_id = $(this).parent().data("cart-id");
+    if (isNaN(val) || val < valMin) {
+      var new_val = valMin;
     }
-  }
-  if (new_val > 0) { 
-    Cart.updateItem(item_id, new_val, function(cart) {
-      processUpdate(input, item_id, new_val, cart);
-    });
-  }
-  else { 
-    Cart.removeItem(item_id, function(cart) {
-      processUpdate(input, item_id, 0, cart);
-    });
-  }
-});
+    if ($t.data('func') == 'plus') {
+      var new_val = val + 1;
+    }
+    else {
+      if (val > valMin) {
+        var new_val = val - 1;
+      }
+    }
+    if (new_val > 0) { 
+      Cart.updateItem(item_id, new_val, function(cart) {
+        processUpdate(input, item_id, new_val, cart);
+      });
+    }
+    else { 
+      Cart.removeItem(item_id, function(cart) {
+        processUpdate(input, item_id, 0, cart);
+      });
+    }
+  })
+  .on( 'blur', '.qty-input', function(e) {
+    e.preventDefault();
+    var item_id = $(this).parent().data("cart-id");
+    var new_val = $(this).val();
+    var input = $(this);
+    if (!isNaN(new_val)) { 
+      Cart.updateItem(item_id, new_val, function(cart) {
+        processUpdate(input, item_id, new_val, cart);
+      });
+    }
+  })
 
-$('body').on( 'blur', '.qty-input', function(e) {
-  e.preventDefault();
-  var item_id = $(this).parent().data("cart-id");
-  var new_val = $(this).val();
-  var input = $(this);
-  if (!isNaN(new_val)) { 
-    Cart.updateItem(item_id, new_val, function(cart) {
-      processUpdate(input, item_id, new_val, cart);
-    });
-  }
-});
-
-$('body').on( 'click', '.apply-discount', function(e) {
-  e.preventDefault();
-  $('.checkout-btn').attr('name','update');
-  Cart.updateFromForm("cart-form", function(cart) { 
-    updateTotals(cart);
-  });
-});
-
-$('body').on( 'change', '[name="cart[shipping_country_id]"]', function(e) {
-  Cart.updateFromForm("cart-form", function(cart) { 
-    updateTotals(cart);
-  });
-});
-
-$('body').on( 'keyup', '[name="cart[discount_code]"]', function(e) {
-  if (e.keyCode == 13) {
-    e.preventDefault(); 
-    $(this).closest('.checkout-btn').attr('name','update');
+  .on( 'click', '.apply-discount', function(e) {
+    e.preventDefault();
+    $('.checkout-btn').attr('name','update');
     Cart.updateFromForm("cart-form", function(cart) { 
       updateTotals(cart);
     });
-    return false;
-  }
-});
-  
-$('body').on( 'click', '.cancel-discount', function(e) {  
-  e.preventDefault(); 
-  $('.cart-form').append('<input name="cart[discount_code]" type="hidden" value="">');
-  Cart.updateFromForm("cart-form", function(cart) { 
-    updateTotals(cart);
-  });
-});
+  })
+  .on( 'change', '[name="cart[shipping_country_id]"]', function(e) {
+    Cart.updateFromForm("cart-form", function(cart) { 
+      updateTotals(cart);
+    });
+  })
+  .on( 'keyup', '[name="cart[discount_code]"]', function(e) {
+    if (e.keyCode == 13) {
+      e.preventDefault(); 
+      $(this).closest('.checkout-btn').attr('name','update');
+      Cart.updateFromForm("cart-form", function(cart) { 
+        updateTotals(cart);
+      });
+      return false;
+    }
+  })
+  .on( 'click', '.cancel-discount', function(e) {  
+    e.preventDefault(); 
+    $('.cart-form').append('<input class="empty-discount" name="cart[discount_code]" type="hidden" value="">');
+    Cart.updateFromForm("cart-form", function(cart) { 
+      updateTotals(cart);
+      $('.empty-discount').remove(0);
+    });
+  })
 
 $(document).click(function(e) {
   var container = $('.content-overlay');
@@ -287,7 +293,7 @@ $(document).ready(function () {
   var swipingCarouselCells = $('.image-list-container > a');
   
   swipingCarouselOptions = {
-    accessability: false,
+    accessibility: false,
     wrapAround: false,
     dragThreshold: 8,
     prevNextButtons: false,
@@ -302,7 +308,7 @@ $(document).ready(function () {
   hoverCarouselCells = $('.product-list a');
 
   hoverCarouselOptions = {
-    accessability: false,
+    accessibility: false,
     wrapAround: false,
     prevNextButtons: false,
     dragThreshold: 8,
@@ -319,7 +325,7 @@ $(document).ready(function () {
   productImages = $('.full-product-images');
   productImagesCells = $('.full-product-images > div');
   productImagesOptions = {
-    accessability: false,
+    accessibility: false,
     wrapAround: true,
     prevNextButtons: false,
     dragThreshold: 8,
@@ -329,7 +335,7 @@ $(document).ready(function () {
   }
   
   desktopProductImagesOptions = {
-    accessability: false,
+    accessibility: false,
     wrapAround: true,
     prevNextButtons: false,
     dragThreshold: 8,
@@ -341,7 +347,7 @@ $(document).ready(function () {
   
   productThumbnailNav = $('.product-thumbnails');
   productThumbnailNavOptions = {
-    accessability: false,
+    accessibility: false,
     wrapAround: false,
     prevNextButtons: false,
     imagesLoaded: true,
