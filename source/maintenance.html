@@ -17,7 +17,7 @@
     <div class="maintenance-message">
 	    <h1 class="maintenance-header">Currently working on our shop, we'll be back soon.</h1>
 
-      {% if theme.twitter_url != blank or theme.facebook_url != blank or theme.instagram_url != blank or theme.tumblr_url != blank or theme.pinterest_url != blank %}
+      {% if theme.twitter_url != blank or theme.facebook_url != blank or theme.instagram_url != blank or theme.tumblr_url != blank or theme.pinterest_url != blank or store.website != blank %}
         <ul class="maintenance-social-links">
           {% if theme.instagram_url != blank %}
             <li><a class="social-link" title="Instagram" href="{{ theme.instagram_url }}">Instagram</a></li>
@@ -34,6 +34,9 @@
           {% endif %}  
           {% if theme.tumblr_url != blank %}
             <li><a class="social-link" title="Tumblr" href="{{ theme.tumblr_url }}">Tumblr</a></li>
+          {% endif %}
+          {% if store.website != blank %}
+            <li><a class="social-link" href="{{ store.website }}">Back to Site</a></li>
           {% endif %}
         </ul>
       {% endif %}
