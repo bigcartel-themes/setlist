@@ -4,7 +4,7 @@
 .product-back-to-products
   color: $secondary-text-color
   font-family: $secondary-font
-  font-size: 13px
+  font-size: 15px
   
   @media screen and (max-width: $break-medium)
     display: block
@@ -40,6 +40,7 @@ h2.product-price
     margin-top: 40px
   
 .product-description
+  color: $secondary-text-color
   font-family: $secondary-font
   font-size: 15px
   line-height: 24px
@@ -90,6 +91,7 @@ h2.product-price
     max-width: 100%
 
 .options-list
+  color: $secondary-text-color
   font-family: $secondary-font
   margin: 0 0 40px
   padding: 0
@@ -106,15 +108,16 @@ h2.product-price
     transition: all .3s linear
     
     &:hover
-      border-bottom: 2px solid $primary-text-color
+      border-bottom: 2px solid $secondary-text-color
     
     &.selected
-      border-bottom: 2px solid $primary-text-color
+      border-bottom: 2px solid $secondary-text-color
     
     &.sold-out
       border-bottom: 2px solid transparent !important
       color: $secondary-text-color
       cursor: default
+      opacity: .5
       text-decoration: line-through
       
 .product-quantity

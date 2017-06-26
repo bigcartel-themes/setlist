@@ -26,7 +26,7 @@
   </div>
 {% else %}
 
-  {% if page.full_url contains '/category/' %}<h3 class="category-header"><a href="/products">Shop</a> / {{ page.name }}</h3>{% endif %}
+  {% if page.full_url contains '/category/' %}<h3 class="category-header"><a href="/products" title="Shop">Shop</a> / {{ page.name }}</h3>{% endif %}
   
   {% paginate products from products.current by 100 %}
     
