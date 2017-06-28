@@ -5,10 +5,12 @@
     display: none
     
 .cart-items
+  left: -27px
   list-style: none
   margin: 0
   padding: 0
   padding-bottom: 240px
+  position: relative
   width: 100%
   
   @media screen and (max-width: $break-medium)
@@ -264,15 +266,16 @@
   transform: translateY(-50%)
   
   @media screen and (max-width: $break-medium)
-    margin-top: 200px
+    height: calc(100vh - 80px)
+    margin-top: 0
     position: relative
     text-align: center
-    top: auto
+    top: -40px
     transform: none
     width: 100%
     
-  @media screen and (max-width: $break-small)
-    margin-top: 100px
+    > p
+      +vertical-align
 
 .cart-empty-message
   display: block
