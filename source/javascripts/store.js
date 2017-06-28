@@ -11,7 +11,6 @@ API.onError = function(errors) {
   if ($('.cart-overlay').hasClass('open') || $("body#cart").length) { 
     $errorList.addClass('cart-errors');
     $cartForm.prepend($errorList);
-    $('.cart-discount-code').addClass('has-errors');
   }
   else { 
     $errorList.addClass('product-errors');
@@ -174,7 +173,7 @@ var updateTotals = function(cart) {
   $('.cart-errors').remove();
   $('.cart-total-amount').html(sub_total);
   $('.cart-num-items').html(item_count);
-  
+  $('.checkout-btn').attr("name","checkout");
   if ($('.cart-shipping-amount').length) { 
     if (cart.shipping.amount) {
       var shipping_amount = '<span>'+Format.money(cart.shipping && cart.shipping.amount ? cart.shipping.amount : 0, true, true)+'</span>';
@@ -185,8 +184,10 @@ var updateTotals = function(cart) {
     $('.cart-shipping-amount').html(shipping_amount);
   }
   if ($('.cart-discount-amount').length) {
-    if (cart.discount) { 
-      $('.cart-discount-status').html('<a href="#" title="Remove discount" class="cancel-discount"><svg class="cancel-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg>' + cart.discount.name + '</a>');
+    if (cart.discount) {
+      $('.apply-discount').addClass('cancel-discount').removeClass('apply-discount');
+      $('.cart-discount-code').val(cart.discount.name);
+      $('.cart-discount-code').prop("disabled", true);
       if (cart.discount.type == 'free_shipping') { 
         var discount_amount = '<span></span>';
       }
@@ -194,8 +195,10 @@ var updateTotals = function(cart) {
         var discount_amount = '<span>- '+Format.money(cart.discount && cart.discount.amount ? cart.discount.amount : 0, true, true)+'</span>';
       }
     }
-    else { 
-      $('.cart-discount-status').html('<a href="#" title="Apply discount" class="apply-discount"><svg class="apply-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg></a><input autocomplete="off" class="cart-discount-code" placeholder="Enter discount code..." name="cart[discount_code]" type="text">');
+    else {
+      $('.cancel-discount').addClass('apply-discount').removeClass('cancel-discount');
+      $('.cart-discount-code').val('');
+      $('.cart-discount-code').prop("disabled", false);
       var discount_amount = '<span>'+Format.money(0, true, true)+'</span>';
     }
     $('.cart-discount-amount').html(discount_amount);
@@ -273,6 +276,10 @@ $('body')
       $('.empty-discount').remove(0);
     });
   })
+  
+  .on('focus','.cart-discount-code', function(e) {
+    $(this).removeClass('has-errors');
+  }) 
 
 $(document).click(function(e) {
   var container = $('.content-overlay');

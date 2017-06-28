@@ -50,13 +50,12 @@
               {% if cart.discount.pending %}
                 <div class="cart-discount-status">
                   <a href="#" title="Apply discount" class="apply-discount"><svg class="apply-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg></a>
-                  <input autocomplete="off" class="cart-discount-code" placeholder="Enter discount code..." name="cart[discount_code]" type="text"{% if cart.discount.code %} value="{{ cart.discount.code }}"{% endif %}>
+                  <input autocomplete="off" class="cart-discount-code" placeholder="Enter discount code..." name="cart[discount_code]" type="text">
                 </div>
               {% else %}
                 <div class="cart-discount-status">
-                  <a href="#" title="Remove discount" class="cancel-discount">
-                    <svg class="cancel-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg> {% if cart.discount.free_shipping %}Free shipping{% else %}{{ cart.discount.name }}{% endif %}
-                  </a>
+                  <a href="#" title="Cancel discount" class="cancel-discount"><svg class="cancel-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg></a>
+                  <input disabled="disabled" autocomplete="off" class="cart-discount-code" placeholder="Enter discount code..." name="cart[discount_code]" type="text"{% if cart.discount.code %} value="{% if cart.discount.free_shipping %}Free shipping{% else %}{{ cart.discount.name }}{% endif %}"{% endif %}>
                 </div>
               {% endif %}
               {% if cart.discount.pending %}
