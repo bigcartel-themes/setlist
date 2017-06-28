@@ -186,7 +186,7 @@ var updateTotals = function(cart) {
   }
   if ($('.cart-discount-amount').length) {
     if (cart.discount) { 
-      $('.cart-discount-status').html('<a href="#" title="Remove discount" class="cancel-discount"><svg class="cancel-discount-button" viewBox="0 0 10 10"><path d="M9.24 7.83L6.41 5l2.83-2.83L7.83.76 5 3.59 2.17.76.76 2.17 3.59 5 .76 7.83l1.41 1.41L5 6.41l2.83 2.83 1.41-1.41" /></svg>' + cart.discount.name + '</a>');
+      $('.cart-discount-status').html('<a href="#" title="Remove discount" class="cancel-discount"><svg class="cancel-discount-button" viewBox="0 0 46 46"><path d="M46 20v6H26v20h-7V26H0v-6h19V0h7v20z"/></svg>' + cart.discount.name + '</a>');
       if (cart.discount.type == 'free_shipping') { 
         var discount_amount = '<span></span>';
       }
