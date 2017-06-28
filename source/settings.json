@@ -1,6 +1,6 @@
 {
   "name": "Setlist",
-  "version": "0.0.114",
+  "version": "0.1.0",
   "images": [
     {
       "variable": "logo",
@@ -24,12 +24,12 @@
     {
       "variable": "menu_bar_background_color",
       "label": "Menu bar background",
-      "default": "#F8F8F8"
+      "default": "#FAFAFA"
     },
     {
       "variable": "menu_bar_text_color",
       "label": "Menu bar text",
-      "default": "#333333"
+      "default": "#646464"
     },
     {
       "variable": "content_area_background_color",
@@ -44,7 +44,7 @@
     {
       "variable": "overlay_color",
       "label": "Overlay Background",
-      "default": "#FAFAFA"
+      "default": "#FFFFFF"
     },
     {
       "variable": "button_background_color",
@@ -64,7 +64,7 @@
     {
       "variable": "link_color",
       "label": "Links",
-      "default": "#999999"
+      "default": "#2166E8"
     },
     {
       "variable": "primary_text_color",
@@ -74,7 +74,7 @@
     {
       "variable": "secondary_text_color",
       "label": "Secondary text",
-      "default": "#999999"
+      "default": "#646464"
     },
     {
       "variable": "error_message_color",
@@ -103,7 +103,7 @@
       "variable": "enable_categories",
       "label": "Enable categories",
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "Enables browsing products by category"
     },
     {
@@ -140,7 +140,7 @@
   "checkout": {
     "header_image": "{{ logo }}",
     "header_image_max_width": "300px",
-    "header_image_max_height": "100px",
+    "header_image_max_height": "120px",
     "title_font": "{{ primary_font }}",
     "title_font_weight": "normal",
     "title_font_size": "22px",
