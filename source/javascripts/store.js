@@ -1,3 +1,5 @@
+var inPreview = (/\/admin\/design/.test(top.location.pathname));
+
 API.onError = function(errors) {
   $('.errors').remove();
   var $errorList = $('<ul>', { class: 'errors'} )
@@ -9,6 +11,7 @@ API.onError = function(errors) {
   if ($('.cart-overlay').hasClass('open') || $("body#cart").length) { 
     $errorList.addClass('cart-errors');
     $cartForm.prepend($errorList);
+    $('.cart-discount-code').addClass('has-errors');
   }
   else { 
     $errorList.addClass('product-errors');
@@ -23,9 +26,6 @@ API.onError = function(errors) {
   }
 }
 
-var inPreview = (/\/admin\/design/.test(top.location.pathname));
-
-
 $('.option-item:not(.sold-out)').click(function(e) { 
   var option_id = $(this).data("option-id");
   if (option_id > 0) { 
@@ -36,7 +36,7 @@ $('.option-item:not(.sold-out)').click(function(e) {
   }
 });
 
-if ( $('.options-list').length > 0) { 
+if ( $('.options-list').length) { 
   var selected_option = $('.options-list li:not(.sold-out):first');
   var option_id = selected_option.data('option-id');
   if (option_id > 0) { 
@@ -64,12 +64,10 @@ $('.product-form').submit(function(e) {
       var $first = $(".cart-icon svg");
       var $second = $(".cart-num-items");
       $second.html(cart.item_count)
-      
-      animateLeft($first, $second);
+      animateCartCount($first, $second);
       var tmp = $first;
       $first = $second;
-      $second = tmp;
-          
+      $second = tmp;   
     });
     setTimeout(function() {
       addText.clone().appendTo(addButton).html(addTextValue).hide();
@@ -130,7 +128,7 @@ $('.open-cart').click(function(e) {
     }
   }
 });
-function animateLeft($src, $tgt){
+function animateCartCount($src, $tgt){
   var $parent = $src.parent();
   var width = $parent.width();
   var srcWidth = $src.width();
@@ -146,7 +144,6 @@ function animateLeft($src, $tgt){
     $tgt.css({left: null, position: null});
   });
 }
-  
 var processUpdate = function(input, item_id, new_val, cart) {
   var item_count = cart.item_count;
   if (item_count == 0) {
@@ -156,7 +153,7 @@ var processUpdate = function(input, item_id, new_val, cart) {
     var $first = $(".cart-num-items");
     var $second = $(".cart-icon svg");
     
-    animateLeft($first, $second);
+    animateCartCount($first, $second);
     var tmp = $first;
     $first = $second;
     $second = tmp;
@@ -206,7 +203,7 @@ var updateTotals = function(cart) {
 }
 
 $('body')
-  .on( 'click', '.qty-button', function() {
+  .on( 'click','.qty-button', function() {
     var $t = $(this)
     , input = $(this).parent().find('input')
     , val = parseInt(input.val())
@@ -234,7 +231,7 @@ $('body')
       });
     }
   })
-  .on( 'blur', '.qty-input', function(e) {
+  .on( 'blur','.qty-input', function(e) {
     e.preventDefault();
     var item_id = $(this).parent().data("cart-id");
     var new_val = $(this).val();
@@ -246,19 +243,19 @@ $('body')
     }
   })
 
-  .on( 'click', '.apply-discount', function(e) {
+  .on('click','.apply-discount', function(e) {
     e.preventDefault();
     $('.checkout-btn').attr('name','update');
     Cart.updateFromForm("cart-form", function(cart) { 
       updateTotals(cart);
     });
   })
-  .on( 'change', '[name="cart[shipping_country_id]"]', function(e) {
+  .on('change','[name="cart[shipping_country_id]"]', function(e) {
     Cart.updateFromForm("cart-form", function(cart) { 
       updateTotals(cart);
     });
   })
-  .on( 'keyup', '[name="cart[discount_code]"]', function(e) {
+  .on('keyup','[name="cart[discount_code]"]', function(e) {
     if (e.keyCode == 13) {
       e.preventDefault(); 
       $(this).closest('.checkout-btn').attr('name','update');
@@ -268,7 +265,7 @@ $('body')
       return false;
     }
   })
-  .on( 'click', '.cancel-discount', function(e) {  
+  .on('click','.cancel-discount', function(e) {  
     e.preventDefault(); 
     $('.cart-form').append('<input class="empty-discount" name="cart[discount_code]" type="hidden" value="">');
     Cart.updateFromForm("cart-form", function(cart) { 
@@ -288,10 +285,8 @@ $(document).click(function(e) {
 });
 
 $(document).ready(function () {
-  
   var swipingCarousel = $('.image-list-container');
   var swipingCarouselCells = $('.image-list-container > a');
-  
   swipingCarouselOptions = {
     accessibility: false,
     wrapAround: false,
@@ -300,13 +295,9 @@ $(document).ready(function () {
     imagesLoaded: true,
     setGallerySize: false
   }
-
   swipingCarousel.flickity(swipingCarouselOptions);
-
-
   hoverCarousel = $('.product-list');
   hoverCarouselCells = $('.product-list a');
-
   hoverCarouselOptions = {
     accessibility: false,
     wrapAround: false,
@@ -321,7 +312,6 @@ $(document).ready(function () {
     asNavFor: '.image-list-container',
     watchCSS: true
   }
-
   productImages = $('.full-product-images');
   productImagesCells = $('.full-product-images > div');
   productImagesOptions = {
@@ -333,7 +323,6 @@ $(document).ready(function () {
     setGallerySize: true,
     adaptiveHeight: true
   }
-  
   desktopProductImagesOptions = {
     accessibility: false,
     wrapAround: true,
@@ -344,7 +333,6 @@ $(document).ready(function () {
     adaptiveHeight: false
   }
   productImages.flickity(productImagesOptions);
-  
   productThumbnailNav = $('.product-thumbnails');
   productThumbnailNavOptions = {
     accessibility: false,
@@ -363,7 +351,6 @@ $(document).ready(function () {
     asNavFor: '.full-product-images',
   }
   productThumbnailNav.flickity(productThumbnailNavOptions);
-
 
   $(window).resize(function () {
     if ($(window).width() >= 1025) {
@@ -389,6 +376,5 @@ $(document).ready(function () {
 $('.product-options').on('change',function() {
   $('.product-price .price-holder').html($('.product-options :selected').data('option-price'));
 });
-
 
 window.addEventListener( 'touchmove', function() {})

@@ -13,10 +13,8 @@
     {% else %}
       <a class="store-link" href="/" title="{{ store.name | escape }}">{{ store.name }}</a>
     {% endif %}
-    
     <div class="maintenance-message">
 	    <h1 class="maintenance-header">Currently working on our shop, we'll be back soon.</h1>
-
       {% if theme.twitter_url != blank or theme.facebook_url != blank or theme.instagram_url != blank or theme.tumblr_url != blank or theme.pinterest_url != blank or store.website != blank %}
         <ul class="maintenance-social-links">
           {% if theme.instagram_url != blank %}

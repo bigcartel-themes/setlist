@@ -7,10 +7,8 @@
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
     {{ head_content }}
   </head>
-
   <body id="{{ page.permalink }}" class="{{ page.category }}">
     <div class="menu-bar">
-      
       <div class="menu-item open-cart">
         <a class="open-cart-link" href="/cart">
           <span class="cart-title">Cart</span>
@@ -20,15 +18,11 @@
           </span>
         </a>
       </div>
-        
-      
-      
       <div class="menu-item toggle-overlay">
         <a class="open-navigation" href="#">
           Menu
         </a>
       </div>
-      
       <div class="menu-item social-links">
         {% if theme.twitter_url != blank or theme.facebook_url != blank or theme.instagram_url != blank or theme.tumblr_url != blank or theme.pinterest_url != blank %}
           {% if theme.instagram_url != blank %}
@@ -49,21 +43,17 @@
           {% endif %}
         {% endif %}
       </div>
-      
       <a class="close-overlay" href="#">
         Close
       </a>
-        
     </div>
-    
     <div class="page-content">
       <div class="left-panel{% if page.category == 'custom' or page.permalink == 'contact' or page.permalink == 'success' %} full-panel{% endif %}">
         {% if theme.logo != blank %}
-          <a class="store-link" href="/" title="{{ store.name | escape }}"><img class="store-logo" alt="{{ store.name | escape }}" src="{{ theme.images.logo.url | constrain: 600, 200 }}"></a>
+          <a class="store-link" href="/" title="{{ store.name | escape }}"><img class="store-logo" alt="{{ store.name | escape }}" src="{{ theme.images.logo.url | constrain: 600, 240 }}"></a>
         {% else %}
           <a class="store-link" href="/" title="{{ store.name | escape }}">{{ store.name }}</a>
         {% endif %}
-        
         {% if page.category == 'custom' or page.permalink == 'contact' %}
           <h1 class="page-title custom-title">{{ page.name }}</h1>
           <div class="custom-panel{% if page.category == 'custom' %} custom-page-content{% endif %}">
@@ -72,32 +62,21 @@
         {% else %}
             {{ page_content }}
         {% endif %}
-        
       </div>
-      
     </div>
-    
-
-    <div class="cart-overlay content-overlay">
-      
-    </div>
-    
+    <div class="cart-overlay content-overlay"></div>
     <div class="content-overlay navigation-overlay">
       {% if theme.logo != blank %}
-        <a class="store-link" href="/" title="{{ store.name | escape }}"><img class="store-logo" alt="{{ store.name | escape }}" src="{{ theme.images.logo.url | constrain: 600, 200 }}"></a>
+        <a class="store-link" href="/" title="{{ store.name | escape }}"><img class="store-logo" alt="{{ store.name | escape }}" src="{{ theme.images.logo.url | constrain: 600, 240 }}"></a>
       {% else %}
         <a class="store-link" href="/" title="{{ store.name | escape }}">{{ store.name }}</a>
       {% endif %}
-      
       <ul class="navigation-items">
         <li><a href="/products" title="Shop">Shop</a></li>
-      
         {% for page in pages.all %}
           <li>{{ page | link_to }}</li>
         {% endfor %}
-      
         <li><a href="/contact" title="{{ pages.contact.name | escape }}">{{ pages.contact.name }}</a></li>
-        
       </ul>
       <ul class="menu-social-links">
         {% if theme.twitter_url != blank or theme.facebook_url != blank or theme.instagram_url != blank or theme.tumblr_url != blank or theme.pinterest_url != blank %}
@@ -122,9 +101,7 @@
           <li><a class="social-link" href="{{ store.website }}">Back to Site</a></li>
         {% endif %}
       </ul>
-      
-      <div class="menu-credit">{{ bigcartel_credit }}</div>
-            
+      <div class="menu-credit">{{ bigcartel_credit }}</div> 
     </div>
     <div class="page-overlay"></div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>

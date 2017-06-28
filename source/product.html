@@ -7,11 +7,8 @@
 	{% when 'coming-soon' %}
 		{% assign product_status = 'Coming soon' %}
 {% endcase %}
-
 <a class="product-back-to-products" href="/products" title="Back to Products">Back to Shop</a>
-
 <h1 class="product-title">{{ page.name }}</h1>
-
 <div class="right-panel product-image-panel{% if theme.product_image_display == 'Fill' %} image-fill{% endif %}">
   {% if product.images.size > 0 %}
     <div class="full-product-images">
@@ -29,10 +26,11 @@
   	  </div>
     {% endif %}
   {% endif %}
-</div>
-          
-<h2 class="product-price"><span class="price-holder">{{ product.default_price | money_with_sign }}</span> {% if product_status != blank %}<span class="status-text">/ {{ product_status }}</span>{% endif %}</h2>
-
+</div>    
+<h2 class="product-price">
+  <span class="price-holder">{{ product.default_price | money_with_sign }}</span>
+  {% if product_status != blank %}<span class="status-text">/ {{ product_status }}</span>{% endif %}
+</h2>
 {% if product.status == 'active' %}
   <form action="/cart" class="product-form" method="post">
     {% if product.has_default_option %}
@@ -42,7 +40,9 @@
         <div class="select product-select">
           <select id="option" class="product-options" name="[cart][add][id]">
             {% for option in product.options %}
-              <option value="{{ option.id }}" data-option-price="{{ option.price | money_with_sign | strip_html }}"{% if option.sold_out %} disabled="disabled"{% endif %}>{{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money_with_sign }}{% endif %} {% if option.sold_out %}(Sold out){% endif %}</option>
+              <option value="{{ option.id }}" data-option-price="{{ option.price | money_with_sign | strip_html }}"{% if option.sold_out %} disabled="disabled"{% endif %}>
+                {{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money_with_sign }}{% endif %} {% if option.sold_out %}(Sold out){% endif %}
+              </option>
             {% endfor %}
           </select>
           <div class="arrow-holder">
@@ -66,7 +66,6 @@
     </button>
   </form>
 {% endif %}
-
 <div class="product-description">
 	{% if product.description != blank %}
 		{{ product.description | paragraphs }}

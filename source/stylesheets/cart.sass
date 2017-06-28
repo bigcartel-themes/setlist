@@ -125,11 +125,16 @@
   z-index: 3
   
   @media screen and (max-width: $break-medium)
-    left: 0
-    padding: 32px
-    width: 100%
     bottom: 60px
- 
+    left: 0
+    margin: 0 auto
+    max-width: 575px
+    padding: 32px 0
+    width: 100%
+
+  @media screen and (max-width: $break-small)
+    padding: 32px
+    
 .cart-footer-background
   background: $content-area-background-color
   bottom: 0
@@ -153,6 +158,12 @@
 .checkout-btn
   color: $button-text-color
   width: 100%
+  
+  @media screen and (max-width: $break-medium)
+    max-width: 575px
+  
+  @media screen and (max-width: $break-small)
+    max-width: 100%
   
   .checkout-btn-icon
     fill: $button-text-color
@@ -238,6 +249,9 @@
   text-align: left
   width: 220px
   
+  &.has-errors
+    color: $error-message-color
+  
   &:active, &:focus
     outline: none
 
@@ -281,5 +295,5 @@
   .cart-total-amount
     float: right
 
-.cart-overlay .store-link
+.cart-overlay .store-link, #cart .store-link
   display: none

@@ -1,6 +1,5 @@
 {% if page.full_url contains '/products' and theme.enable_categories == true and categories.active != blank %}
   <nav class="product-list">
-    
     {% for category in categories.active %}
       <a class="nav-card product-card" href="{{ category.url }}">
         <span class="nav-link product-link" href="{{ category.url }}">
@@ -8,10 +7,8 @@
         </span>
       </a>
     {% endfor %}
-    
   </nav>  
   <div class="image-list-container{% if theme.product_image_display == 'Fill' %} image-fill{% endif %}">
-    
     {% for category in categories.active %}
       <a class="carousel-cell" href="{{ category.url }}">
         {% for product in category.products limit:1 %}
@@ -22,16 +19,11 @@
         </div>
       </a>
     {% endfor %}
-    
   </div>
 {% else %}
-
   {% if page.full_url contains '/category/' %}<h3 class="category-header"><a href="/products" title="Shop">Shop</a> / {{ page.name }}</h3>{% endif %}
-  
   {% paginate products from products.current by 100 %}
-    
     {% if products != blank %}
-      
       <nav class='product-list'>
         {% for product in products %}
           {% assign product_status = '' %}
@@ -46,12 +38,14 @@
           <a class="carousel-cell nav-card product-card {{ product.css_class }}" href="{{ product.url }}">
             <span class="nav-link product-link">
               <span class="product-title">{{ product.name }}</span>
-              <span class="product-price">{{ product.default_price | money_with_sign }} {% if product_status != blank %}<span class="status-text">/ {{ product_status }}</span>{% endif %}</span>
+              <span class="product-price">
+                {{ product.default_price | money_with_sign }}
+                {% if product_status != blank %}<span class="status-text">/ {{ product_status }}</span>{% endif %}
+              </span>
             </span>
           </a>
         {% endfor %}
       </nav>
-      
       <div class="image-list-container{% if theme.product_image_display == 'Fill' %} image-fill{% endif %}">
         {% for product in products %}
           <a class="carousel-cell" href="{{ product.url }}">
@@ -63,13 +57,8 @@
           </a>
         {% endfor %}
       </div>
-      
     {% else %}
       Sorry, no products found.
     {% endif %}
-    
   {% endpaginate %}
-
 {% endif %}
-
-

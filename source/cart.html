@@ -5,24 +5,18 @@
     {% endfor %}
   </ul>
 {% endif %}
-
 {% if cart.items != blank %}
   <form method="post" action="/cart" id="cart-form" class="cart-form">
-    
     <ul class="cart-items">
       {% for item in cart.items %}
         <li class="cart-item" data-cart-id="{{ item.id }}">
-        
           <div class="item-quantity-holder" data-cart-id="{{ item.id }}">
             <button class="increase-qty qty-button" type="button" data-func="plus"><svg viewBox="0 0 20 20"><path d="M11 5H9v4H5v2h4v4h2v-4h4V9h-4z"/></svg></button>
             {{ item | item_quantity_input, '', 'qty-input' }}
             <button class="decrease-qty qty-button" type="button" data-func="minus"><svg viewBox="0 0 20 20"><path d="M5 9h10v2H5z"/><path d="M5 9h10v2H5z"/></svg></button>
           </div>
-          
-          
           <div class="item-image-details">
             <a class="item-image" href="{{ item.product.url }}" title="View {{ item.product.name }}" style="background-image:url('{{ item.product.image | product_image_url | constrain: 600, 600 }}');"></a>
-            
             <div class="item-details">
               <a class="item-product-link" title="View {{ item.product.name }}" href="{{ item.product.url }}">
                 <div class="item-details-name">{{ item.product.name }}</div>
@@ -32,14 +26,10 @@
                 <div class="item-details-price">{{ item.unit_price | money_with_sign }}</div>
               </a>
             </div>
-            
           </div>
-          
         </li>
       {% endfor %}
     </ul>
-    
-    
     <div class="cart-footer">
       <div class="cart-footer-background"></div>
       {% if cart.shipping.enabled or cart.discount.enabled %}
@@ -65,7 +55,7 @@
               {% else %}
                 <div class="cart-discount-status">
                   <a href="#" title="Remove discount" class="cancel-discount">
-                    <svg class="cancel-discount-button"  viewBox="0 0 10 10"><path d="M9.24 7.83L6.41 5l2.83-2.83L7.83.76 5 3.59 2.17.76.76 2.17 3.59 5 .76 7.83l1.41 1.41L5 6.41l2.83 2.83 1.41-1.41" /></svg> {% if cart.discount.free_shipping %}Free shipping{% else %}{{ cart.discount.name }}{% endif %}
+                    <svg class="cancel-discount-button" viewBox="0 0 10 10"><path d="M9.24 7.83L6.41 5l2.83-2.83L7.83.76 5 3.59 2.17.76.76 2.17 3.59 5 .76 7.83l1.41 1.41L5 6.41l2.83 2.83 1.41-1.41" /></svg> {% if cart.discount.free_shipping %}Free shipping{% else %}{{ cart.discount.name }}{% endif %}
                   </a>
                 </div>
               {% endif %}
