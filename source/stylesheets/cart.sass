@@ -115,7 +115,7 @@
   font-size: 15px
   
 .cart-footer
-  transition: all .3s ease-in-out
+  +transition(all .3s ease-in-out)
   background: none
   bottom: 0
   height: auto
@@ -228,7 +228,7 @@
     width: 13px
   
 .cancel-discount > svg
-  transform: rotate(45deg)
+  +transform(rotate(45deg))
   
 .cart-discount-code
   background: none
@@ -251,17 +251,17 @@
   margin-top: 5px
     
 .cart-empty-holder
+  +transform(translateY(-50%))
   position: absolute
   top: 50%
-  transform: translateY(-50%)
   
   @media screen and (max-width: $break-medium)
+    +transform(none)
     height: calc(100vh - 80px)
     margin-top: 0
     position: relative
     text-align: center
     top: -40px
-    transform: none
     width: 100%
     
     > p

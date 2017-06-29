@@ -93,13 +93,13 @@ $('.close-overlay').click(function(e) {
 
 function openOverlay(type) { 
   if (type == 'cart') { 
+    $('.cart-overlay').load("/cart?" + $.now() + " .left-panel > *", function() {
     $('.page-overlay').fadeIn('fast');
     $('.menu-item').fadeOut('fast', function() { 
       $('.close-overlay').fadeIn('fast');
     });
     $('html').css('overflow-y','hidden');
     $('.left-panel').css('height','100vh');
-    $('.cart-overlay').load("/cart?" + $.now() + " .left-panel > *", function() {
       $('.cart-overlay').toggleClass('open');
     });
   }

@@ -17,15 +17,15 @@
   position: relative
   
   &:before
-    transition: width 0.8s ease-out, left 0.8s ease-out
+    +transition(width 0.8s ease-out, left 0.8s ease-out)
+    background-color: $primary-text-color
+    content: '\a0'
+    height: 2px
+    left: -10px
+    overflow: hidden
     position: absolute
     top: 50%
-    overflow: hidden
-    left: -10px
     width: 0
-    height: 2px
-    content: '\a0'
-    background-color: $primary-text-color
     z-index: -1
   
   &.active:before
@@ -35,7 +35,7 @@
     left: 20px
     
   .category-link
-    transition: all .8s ease-in-out
+    +transition(all .8s ease-in-out)
     +pie-clearfix
     color: $primary-text-color
     display: block
@@ -63,15 +63,15 @@
   position: relative
   
   &:before
-    transition: width 0.4s ease-out, left 0.4s ease-out
+    +transition(width 0.4s ease-out, left 0.4s ease-out)
+    background-color: $primary-text-color
+    content: '\a0'
+    height: 2px
+    left: -10px
+    overflow: hidden
     position: absolute
     top: 50%
-    overflow: hidden
-    left: -10px
     width: 0
-    height: 2px
-    content: '\a0'
-    background-color: $primary-text-color
     z-index: -1
   
   &:hover:before
@@ -85,7 +85,7 @@
     opacity: 1
     
   .product-link
-    transition: all .4s ease-in-out
+    +transition(all .4s ease-in-out)
     +pie-clearfix
     color: $primary-text-color
     display: block
@@ -100,8 +100,8 @@
     z-index: 5
   
   .product-price
+    +transition(opacity .4s linear)
     font-size: 15px
-    transition: opacity .4s linear
     opacity: 0
     white-space: nowrap
     z-index: 5
@@ -115,14 +115,13 @@
     position: relative
 
 .product-card
-  position: relative !important
-  left: auto !important
+  +transition(opacity 0.3s ease-in)
+  cursor: pointer
+  display: block !important
   font-size: 15px
   line-height: 1
-  cursor: pointer
-  -webkit-transition: opacity 0.3s ease-in
-  transition: opacity 0.3s ease-in
-  display: block !important
+  left: auto !important
+  position: relative !important
 
 @media only screen and (min-width: $break-medium)
   .left-panel .product-list::after
@@ -140,18 +139,16 @@
     height: 100%
   
   .image-list-container .carousel-cell 
-    opacity: 0
-    z-index: -1
-    position: relative
+    +transition(opacity 0.6s linear, z-index 0.9s linear 0.2s)
     left: 0 !important
-    -webkit-transition: opacity 0.6s linear, z-index 0.9s linear 0.2s
-    transition: opacity 0.6s linear, z-index 0.9s linear 0.2s
+    opacity: 0
+    position: relative
+    z-index: -1
   
   .image-list-container .carousel-cell.is-selected
+    +transition(opacity 0.6s linear)
     opacity: 1
     z-index: 0
-    -webkit-transition: opacity 0.6s linear
-    transition: opacity 0.6s linear
   
   .image-list-container .flickity-page-dots 
     display: none
@@ -230,13 +227,13 @@
       width: 70%
       
       &.is-selected .product-image-background
-        transform: scale(1)
+        +transform(scale(1))
       
     .product-image-background
+      +transform(scale(.9))
+      +transition(transform .3s)
       max-height: 85%
       object-fit: contain !important
-      transform: scale(.9)
-      transition: transform 0.3s
       width: 85%
 
     .product-details

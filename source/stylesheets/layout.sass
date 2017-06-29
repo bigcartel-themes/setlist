@@ -221,6 +221,7 @@ ul, ol
       margin-right: 10px
       
   .cart-icon
+    +transition(all .3s ease-in-out)
     border-radius: 50%
     background: $menu-bar-text-color
     color: $menu-bar-background-color
@@ -229,7 +230,6 @@ ul, ol
     overflow: hidden
     position: relative
     text-align: center
-    transition: all .3s ease-in-out
     width: 40px
     
     .cart-num-items
@@ -268,17 +268,17 @@ ul, ol
       +justify-content(flex-start)
           
     .open-navigation
+      +transform(rotate(180deg))
+      +transition(none)
       color: $menu-bar-text-color
       display: block
       transform-style: preserve-3d
       font-family: $secondary-font 
-      transform: rotate(180deg)
       -ms-writing-mode: tb-lr
       writing-mode: vertical-lr
-      transition: none
     
       @media screen and (max-width: $break-medium)
-        transform: none
+        +transform(none)
         writing-mode: initial
         
   .social-links
@@ -298,7 +298,7 @@ ul, ol
       display: none !important
       
     .social-link
-      transition: all .3s ease-in-out
+      +transition(all .3s ease-in-out)
       margin-top: 20px
       
       @media screen and (max-width: $break-medium)
@@ -308,7 +308,7 @@ ul, ol
         display: none
   
       &:hover, &:active
-        transition: opacity .4s ease-in-out
+        +transition(opacity .4s ease-in-out)
         opacity: .8
       
       @media screen and (max-width: $break-medium)
@@ -321,6 +321,7 @@ ul, ol
         width: 15px
     
   .close-overlay
+    +transform(rotate(180deg))
     bottom: 0
     color: $menu-bar-text-color
     display: none
@@ -329,7 +330,6 @@ ul, ol
     left: 0
     line-height: 60px
     text-align: center
-    transform: rotate(180deg)
     -ms-writing-mode: tb-lr
     writing-mode: vertical-lr
     position: absolute
@@ -338,9 +338,9 @@ ul, ol
     width: 100%
     
     @media screen and (max-width: $break-medium)
+      +transform(none)
       height: 70px
       line-height: 70px
-      transform: none
       writing-mode: initial
 
 .left-panel
@@ -379,6 +379,7 @@ ul, ol
     background: none
   
 .navigation-overlay, .cart-overlay
+  +transition(all .3s ease-in-out)
   background: $content-area-background-color
   bottom: 0
   height: 100vh
@@ -389,7 +390,6 @@ ul, ol
   position: fixed
   right: 50%
   top: 0
-  transition: all .3s ease-in-out
   visibility: hidden
   width: 100%
   z-index: 2
