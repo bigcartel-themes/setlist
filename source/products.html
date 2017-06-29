@@ -59,7 +59,7 @@
         {% endfor %}
       </div>
       {% if paginate.pages > 1 %}
-        {{ paginate | default_pagination, 'pagination', 'pagination' }}
+        {{ paginate | default_pagination, 'pagination', 'pagination', '<svg width="10" height="6" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M9.852 1.536c.2-.19.2-.496 0-.684L9.135.17c-.197-.19-.518-.19-.715 0L5.016 3.463 1.582.142c-.2-.19-.52-.19-.717 0L.148.825c-.197.188-.197.494 0 .684l4.508 4.35c.2.187.52.187.717 0l4.48-4.324z" /></svg> Prev', 'Next <svg width="10" height="6" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M9.852 1.536c.2-.19.2-.496 0-.684L9.135.17c-.197-.19-.518-.19-.715 0L5.016 3.463 1.582.142c-.2-.19-.52-.19-.717 0L.148.825c-.197.188-.197.494 0 .684l4.508 4.35c.2.187.52.187.717 0l4.48-4.324z" /></svg>' }}
       {% endif %}
     {% else %}
       <div class="no-products-message">Sorry, no products were found.</div>
