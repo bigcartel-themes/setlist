@@ -7,7 +7,7 @@
 	{% when 'coming-soon' %}
 		{% assign product_status = 'Coming soon' %}
 {% endcase %}
-<a class="product-back-to-products" href="/products" title="Back to Products">Back to Shop</a>
+<a class="product-back-to-products" href="/products" title="Back to Shop">Back to Shop</a>
 <h1 class="product-title">{{ page.name }}</h1>
 <div class="right-panel product-image-panel{% if theme.product_image_display == 'Fill' %} image-fill{% endif %}">
   {% if product.images.size > 0 %}

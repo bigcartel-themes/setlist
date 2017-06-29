@@ -46,6 +46,7 @@
           </a>
         {% endfor %}
       </nav>
+      
       <div class="image-list-container{% if theme.product_image_display == 'Fill' %} image-fill{% endif %}">
         {% for product in products %}
           <a class="carousel-cell" href="{{ product.url }}">
@@ -57,8 +58,11 @@
           </a>
         {% endfor %}
       </div>
+      {% if paginate.pages > 1 %}
+        {{ paginate | default_pagination, 'pagination', 'pagination' }}
+      {% endif %}
     {% else %}
-      Sorry, no products found.
+      <div class="no-products-message">Sorry, no products were found.</div>
     {% endif %}
   {% endpaginate %}
 {% endif %}
