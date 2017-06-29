@@ -1,6 +1,6 @@
 {
   "name": "Setlist",
-  "version": "0.1.10",
+  "version": "0.1.19",
   "images": [
     {
       "variable": "logo",
@@ -191,8 +191,8 @@
     "button_border_color": "{{ button_color }}",
     "button_hover_border_color": "{{ button_color }}",
     "button_text_transform": "none",
-    "link_color": "{{ primary_text_color }}",
-    "link_hover_color": "{{ link_color }}",
+    "link_color": "{{ link_color }}",
+    "link_hover_color": "{{ primary_text_color }}",
     "step_header_color": "{{ primary_text_color }}",
     "step_header_font_size": "18px",
     "summary_color": "{{ primary_text_color }}",
