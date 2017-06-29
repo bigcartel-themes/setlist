@@ -4,8 +4,8 @@
   "images": [
     {
       "variable": "logo",
-      "label": "Logo",
-      "description": "Adds your logo to the header"
+      "label": "Header logo",
+      "description": "Good for an image up to 600 x 120 pixels."
     }
   ],
   "fonts": [
@@ -139,7 +139,7 @@
   ],
   "checkout": {
     "header_image": "{{ logo }}",
-    "header_image_max_width": "300px",
+    "header_image_max_width": "600px",
     "header_image_max_height": "120px",
     "title_font": "{{ primary_font }}",
     "title_font_weight": "normal",
