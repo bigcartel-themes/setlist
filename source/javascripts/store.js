@@ -126,7 +126,9 @@ function closeOverlay() {
 $('.open-cart').click(function(e) { 
   if (!inPreview) { 
     e.preventDefault();
-    if (window.location.href.indexOf("/cart") == -1) {
+    var currentURL = window.location.href;
+    var lastPart = currentURL.substr(currentURL.lastIndexOf('/') + 1);
+    if (lastPart != 'cart') {
       openOverlay('cart');
     }
   }
