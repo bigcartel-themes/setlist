@@ -28,7 +28,7 @@
   {% endif %}
 </div>    
 <h2 class="product-price">
-  <span class="price-holder">{{ product.default_price | money_with_sign }}</span>
+  <span class="price-holder">{{ product.default_price | money: theme.money_format }}</span>
   {% if product_status != blank %}<span class="status-text">/ {{ product_status }}</span>{% endif %}
 </h2>
 {% if product.status == 'active' %}
@@ -40,8 +40,8 @@
         <div class="select product-select">
           <select id="option" class="product-options" name="[cart][add][id]">
             {% for option in product.options %}
-              <option value="{{ option.id }}" data-option-price="{{ option.price | money_with_sign | strip_html }}"{% if option.sold_out %} disabled="disabled"{% endif %}>
-                {{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money_with_sign }}{% endif %} {% if option.sold_out %}(Sold out){% endif %}
+              <option value="{{ option.id }}" data-option-price="{{ option.price | money: theme.money_format | strip_html }}"{% if option.sold_out %} disabled="disabled"{% endif %}>
+                {{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money: theme.money_format }}{% endif %} {% if option.sold_out %}(Sold out){% endif %}
               </option>
             {% endfor %}
           </select>
@@ -53,8 +53,8 @@
         <input type="hidden" name="[cart][add][id]" id="option" class="hidden-product-option">
         <ul class="options-list">
           {% for option in product.options %}
-            <li class="option-item{% if option.sold_out %} sold-out{% endif %}" data-option-id="{{ option.id }}" data-option-price="{{ option.price | money_with_sign | strip_html }}">
-              {{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money_with_sign }}{% endif %}
+            <li class="option-item{% if option.sold_out %} sold-out{% endif %}" data-option-id="{{ option.id }}" data-option-price="{{ option.price | money: theme.money_format | strip_html }}">
+              {{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money: theme.money_format }}{% endif %}
             </li>
           {% endfor %}
         </ul>

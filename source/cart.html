@@ -23,7 +23,7 @@
                 {% unless item.product.has_default_option %}
                   <div class="item-details-option">{{ item.option.name }}</div>
                 {% endunless %}
-                <div class="item-details-price">{{ item.unit_price | money_with_sign }}</div>
+                <div class="item-details-price">{{ item.unit_price | money: theme.money_format }}</div>
               </a>
             </div>
           </div>
@@ -41,7 +41,7 @@
                 <svg viewBox="0 0 13.4 8.1"><path d="M6.8 8.1L0 1.75 1.36.3l5.38 5L11.97 0l1.42 1.4-6.6 6.7z" /></svg>
               </div>
               <h4 class="cart-shipping-amount">
-                <span>{{ cart.shipping.amount | money_with_sign }}</span>
+                <span>{{ cart.shipping.amount | money: theme.money_format }}</span>
               </h4>
             </div>
           {% endif %}
@@ -59,11 +59,11 @@
                 </div>
               {% endif %}
               {% if cart.discount.pending %}
-                <h4 class="cart-discount-amount">{{ 0 | money_with_sign }}</h4>
+                <h4 class="cart-discount-amount">{{ 0 | money: theme.money_format }}</h4>
               {% elsif cart.discount.free_shipping %}
                 <h4 class="cart-discount-amount"><span></span></h4>
               {% else %}
-                <h4 class="cart-discount-amount"><span>- {{ cart.discount.amount | money_with_sign }}</span></h4>
+                <h4 class="cart-discount-amount"><span>- {{ cart.discount.amount | money: theme.money_format }}</span></h4>
               {% endif %}
             </div>
           {% endif %}
@@ -71,9 +71,9 @@
       {% endif %}
       <div class="cart-totals">
         {% if cart.shipping.enabled or cart.discount.enabled %}
-          <h3 class="cart-total cart-subtotal">Total <span class="cart-total-amount">{{ cart.total | money_with_sign }}</span></h3>
+          <h3 class="cart-total cart-subtotal">Total <span class="cart-total-amount">{{ cart.total | money: theme.money_format }}</span></h3>
         {% else %}
-          <h3 class="cart-total"><span class="cart-total-amount">{{ cart.total | money_with_sign }}</span></h3>
+          <h3 class="cart-total"><span class="cart-total-amount">{{ cart.total | money: theme.money_format }}</span></h3>
         {% endif %}
         <button type="submit" name="checkout" title="Checkout" class="button checkout-btn">Checkout <svg class="checkout-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 18"><path d="M12,6V5A5,5,0,0,0,2,5V6H0V18H14V6ZM9,15H5l.8-2.41a2,2,0,1,1,2.4,0Zm1-9H4V5a3,3,0,0,1,6,0Z"/></svg></button>
       </div>
