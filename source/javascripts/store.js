@@ -180,35 +180,6 @@ var updateTotals = function(cart) {
   $('.cart-total-amount').html(sub_total);
   $('.cart-num-items').html(item_count);
   $('.checkout-btn').attr("name","checkout");
-  if ($('.cart-shipping-amount').length) { 
-    if (cart.shipping.amount) {
-      var shipping_amount = '<span>'+Format.money(cart.shipping && cart.shipping.amount ? cart.shipping.amount : 0, true, true)+'</span>';
-    }
-    else {
-      var shipping_amount = '<span>'+Format.money(0, true, true)+'</span>';
-    }
-    $('.cart-shipping-amount').html(shipping_amount);
-  }
-  if ($('.cart-discount-amount').length) {
-    if (cart.discount) {
-      $('.apply-discount').addClass('cancel-discount').removeClass('apply-discount');
-      $('.cart-discount-code').val(cart.discount.name);
-      $('.cart-discount-code').prop("disabled", true);
-      if (cart.discount.type == 'free_shipping') { 
-        var discount_amount = '<span></span>';
-      }
-      else { 
-        var discount_amount = '<span>- '+Format.money(cart.discount && cart.discount.amount ? cart.discount.amount : 0, true, true)+'</span>';
-      }
-    }
-    else {
-      $('.cancel-discount').addClass('apply-discount').removeClass('cancel-discount');
-      $('.cart-discount-code').val('');
-      $('.cart-discount-code').prop("disabled", false);
-      var discount_amount = '<span>'+Format.money(0, true, true)+'</span>';
-    }
-    $('.cart-discount-amount').html(discount_amount);
-  }
 }
 
 $('body')
@@ -251,48 +222,6 @@ $('body')
       });
     }
   })
-
-  .on('click','.apply-discount', function(e) {
-    e.preventDefault();
-    $('.checkout-btn').attr('name','update');
-    Cart.updateFromForm("cart-form", function(cart) { 
-      updateTotals(cart);
-    });
-  })
-  .on( 'blur','.cart-discount-code', function(e) {
-    e.preventDefault();
-    $('.checkout-btn').attr('name','update');
-    Cart.updateFromForm("cart-form", function(cart) { 
-      updateTotals(cart);
-    });
-  })
-  .on('change','[name="cart[shipping_country_id]"]', function(e) {
-    Cart.updateFromForm("cart-form", function(cart) { 
-      updateTotals(cart);
-    });
-  })
-  .on('keyup','[name="cart[discount_code]"]', function(e) {
-    if (e.keyCode == 13) {
-      e.preventDefault(); 
-      $(this).closest('.checkout-btn').attr('name','update');
-      Cart.updateFromForm("cart-form", function(cart) { 
-        updateTotals(cart);
-      });
-      return false;
-    }
-  })
-  .on('click','.cancel-discount', function(e) {  
-    e.preventDefault(); 
-    $('.cart-form').append('<input class="empty-discount" name="cart[discount_code]" type="hidden" value="">');
-    Cart.updateFromForm("cart-form", function(cart) { 
-      updateTotals(cart);
-      $('.empty-discount').remove(0);
-    });
-  })
-  
-  .on('focus','.cart-discount-code', function(e) {
-    $(this).removeClass('has-errors');
-  }) 
 
 $(document).click(function(e) {
   var container = $('.content-overlay');
