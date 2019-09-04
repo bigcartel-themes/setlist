@@ -4,18 +4,18 @@
   color: $secondary-text-color
   font-family: $secondary-font
   font-size: 15px
-  
+
   @media screen and (max-width: $break-medium)
     display: block
     text-align: center
-  
+
 h1.product-title
   font-weight: normal
   font-size: 30px
   margin: 0
   margin-top: 10px
   padding: 0
-  
+
   @media screen and (max-width: $break-medium)
     margin-bottom: 30px
     text-align: center
@@ -23,65 +23,65 @@ h1.product-title
 h2.product-price
   font-size: 20px
   font-weight: normal
-  margin: 0 
+  margin: 0
   margin-bottom: 40px
   margin-top: 10px
   padding: 0
-  
+
   @media screen and (max-width: $break-medium)
     margin-top: 20px
     text-align: center
-    
+
   @media screen and (max-width: $break-small)
     margin-top: 40px
-  
+
 .product-description
   color: $secondary-text-color
   font-family: $secondary-font
   font-size: 15px
   line-height: 24px
-  
+
   @media screen and (max-width: $break-medium)
-    margin: 0 auto 
+    margin: 0 auto
     max-width: 500px
-  
+
   @media screen and (max-width: $break-small)
     padding: 0 20px
-    
+
   img, iframe
     display: block
     max-width: 100%
-    
+
   ol, ul
     margin: 1em 0 0 20px
     padding: 0
-  
+
   ol
     list-style-type: decimal
-    
+
   ul
     list-style-type: disc
 
   a
     color: $link-color
-  
+
 .product-form
   margin-bottom: 40px
-  
+
   @media screen and (max-width: $break-medium)
     max-width: 500px
     margin: 0 auto 40px
-    
+
   @media screen and (max-width: $break-small)
     padding: 0 20px
-  
+
 .product-select
   display: inline-block
   max-width: 260px
   margin-bottom: 10px
   margin-right: 25px
   width: 100%
-  
+
   @media screen and (max-width: $break-medium)
     display: block
     margin: 0 auto 10px
@@ -92,10 +92,10 @@ h2.product-price
   font-family: $secondary-font
   margin: 0 0 40px
   padding: 0
-  
+
   @media screen and (max-width: $break-medium)
     text-align: center
-  
+
   .option-item
     +transition(all .3s linear)
     border-bottom: 2px solid transparent
@@ -103,28 +103,28 @@ h2.product-price
     display: inline-block
     margin: 0 5px 10px
     padding-bottom: 2px
-    
+
     &:hover
       border-bottom: 2px solid $secondary-text-color
-    
+
     &.selected
       border-bottom: 2px solid $secondary-text-color
-    
+
     &.sold-out
       border-bottom: 2px solid transparent !important
       color: $secondary-text-color
       cursor: default
       opacity: .5
       text-decoration: line-through
-      
+
 .product-quantity
   display: none
-  
+
 .add-to-cart-button
   display: inline-block
-  max-width: 260px
+  max-width: 300px
   width: 100%
-  
+
   @media screen and (max-width: $break-medium)
     display: block
     margin: 0 auto
@@ -132,17 +132,17 @@ h2.product-price
 
 #product .panel-content
   max-width: 600px
-  
+
   @media screen and (max-width: $break-medium)
     max-width: 100%
-          
+
 .product-image-panel
 
   .full-product-images
     background-repeat: repeat
     background-size: 100px
     background-color: $image-area-background-color
-  
+
   .full-product-image
     +transition(background-image 0.2s linear)
     background-size: contain
@@ -159,10 +159,10 @@ h2.product-price
     top: 0
     width: 100%
     z-index: 2
-    
+
     @media screen and (max-width: $break-medium)
       height: 100%
-  
+
   &.image-fill
     .full-product-image
       object-fit: cover
@@ -175,18 +175,18 @@ h2.product-price
   text-align: center
   width: 100%
   z-index: 3
-  
+
   &::after
     content: 'flickity'
     display: none
-  
+
   @media screen and (max-width: $break-medium)
     bottom: auto
     padding: 20px 0
     position: relative
-    
+
     .flickity-slider
-      cursor: pointer 
+      cursor: pointer
       margin-top: 0
 
 .product-thumbnail
@@ -204,10 +204,10 @@ h2.product-price
 
   &.is-nav-selected
     opacity: 1
-    
+
   &:hover
     opacity: 1
-  
+
   .product-thumbnail-link
     background-size: cover
     background-position: 50% 50%
@@ -216,18 +216,18 @@ h2.product-price
     display: block
     height: 100%
     width: 100%
-  
+
 @media only screen and (min-width: $break-medium)
   .full-product-images .flickity-viewport
     position: relative
     pointer-events: none
-  
-  .full-product-images .flickity-slider 
+
+  .full-product-images .flickity-slider
     +transform(none !important)
     height: 100%
     position: absolute
     width: 100%
-    
+
   .full-product-images .carousel-cell
     +transition(opacity 0.6s linear, z-index 0.9s linear 0.2s)
     left: 0 !important
@@ -240,7 +240,7 @@ h2.product-price
     opacity: 1
     z-index: 0
 
-@media screen and (max-width: $break-medium)  
+@media screen and (max-width: $break-medium)
   .product-image-panel
     background-repeat: repeat
     background-size: 100px
@@ -251,33 +251,33 @@ h2.product-price
     left: 0
     max-width: 100%
     right: 0
-  
+
     &.image-fill
       background: none
-    
+
     .full-product-images
       background: none
       margin: 0 auto
       max-width: 600px
-      
+
     .full-product-image
       height: auto
-      
+
     .flickity-slider
       margin: 0
-      
+
     .flickity-viewport
       +transition(height .5s)
-      
+
     .product-thumbnails
       padding-top: 0
       top: -20px
-      
-    &.image-fill 
+
+    &.image-fill
       .product-thumbnails
         padding-top: 20px
         top: 0
-        
+
 @media screen and (max-width: $break-small)
   .product-image-panel .full-product-images
     max-width: 100%

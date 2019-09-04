@@ -92,6 +92,10 @@ button, .button
   padding: 0 20px
   text-align: center
 
+  &:disabled, &.disabled
+    opacity: .25
+    cursor: not-allowed
+
   &:active, &:focus
     outline: none
 
@@ -109,10 +113,14 @@ input, textarea
   border: 2px solid $button-background-color
   color: $button-background-color
   height: 60px
-  max-width: 50%
+  margin-bottom: 16px
+  max-width: 300px
   padding: 0
   position: relative
   width: 100%
+
+  @media screen and (max-width: $break-medium)
+    max-width: 100%
 
   select
     +all-transitions
@@ -149,6 +157,9 @@ input, textarea
     fill: $button-background-color
     height: 13px
     margin: 0 auto
+    position: absolute
+    right: 20px
+    top: 50%
     width: 13px
     z-index: 1
 
@@ -164,15 +175,6 @@ input, textarea
 
     svg
       fill: $button-background-color
-
-  .arrow-holder
-    +all-transitions
-    height: 56px
-    position: absolute
-    right: 0
-    text-align: center
-    top: 0
-    width: 56px
 
 ul, ol
   list-style-type: none

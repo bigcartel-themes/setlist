@@ -54,7 +54,7 @@
                   <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
                 {% endfor %}
               </select>
-              <svg viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"/></svg>
+              <svg width="10" height="6" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M9.852 1.536c.2-.19.2-.496 0-.684L9.135.17c-.197-.19-.518-.19-.715 0L5.016 3.463 1.582.142c-.2-.19-.52-.19-.717 0L.148.825c-.197.188-.197.494 0 .684l4.508 4.35c.2.187.52.187.717 0l4.48-4.324z" /></svg>
             </div>
           {% endfor %}
         </div>
@@ -66,11 +66,12 @@
               <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} (Sold out){% endif %}</option>
             {% endfor %}
           </select>
-          <svg viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"/></svg>
+          <svg width="10" height="6" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M9.852 1.536c.2-.19.2-.496 0-.684L9.135.17c-.197-.19-.518-.19-.715 0L5.016 3.463 1.582.142c-.2-.19-.52-.19-.717 0L.148.825c-.197.188-.197.494 0 .684l4.508 4.35c.2.187.52.187.717 0l4.48-4.324z" /></svg>
         </div>
       {% endif %}
     {% endif %}
-    <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-add-title="Add to Cart" data-sold-title="Sold out">Add to Cart</button>
+    {{ product | product_quantity_input, 1, 'product-quantity', 'product-quantity' }}
+    <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-adding-text="Adding..." data-added-text="Added!" data-add-title="Add to Cart" data-sold-title="Sold out">Add to Cart</button>
   </form>
 {% endif %}
 <div class="product-description">

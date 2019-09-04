@@ -1,6 +1,6 @@
 {
   "name": "Setlist",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "images": [
     {
       "variable": "logo",
@@ -96,7 +96,7 @@
       "label": "Product Option Display",
       "type": "select",
       "options": ["Dropdown", "List"],
-      "default": "List",
+      "default": "Dropdown",
       "description": "Determines how product options are displayed"
     },
     {
