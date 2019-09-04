@@ -93,8 +93,17 @@ h2.product-price
   margin: 0 0 40px
   padding: 0
 
+  &.product-options-list
+    margin-bottom: 20px
+
   @media screen and (max-width: $break-medium)
     text-align: center
+
+  .product-options-list-title
+    color: $primary-text-color
+    font-size: 15px
+    font-weight: 700
+    margin-bottom: 10px
 
   .option-item
     +transition(all .3s linear)
@@ -116,6 +125,9 @@ h2.product-price
       cursor: default
       opacity: .5
       text-decoration: line-through
+
+    &:first-child
+      margin-left: 0
 
 .product-quantity
   display: none
