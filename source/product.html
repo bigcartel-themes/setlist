@@ -43,10 +43,7 @@
     {% if product.has_default_option %}
       {{ product.option | hidden_option_input }}
     {% else %}
-
-
-
-      {% if theme.product_option_display == 'Dropdown' %}
+      {% if theme.product_option_display == 'dropdown' %}
         {% if product.has_option_groups %}
           <div class="product_option_groups">
             <input id="option" name="cart[add][id]" type="hidden" value="0">
@@ -73,42 +70,35 @@
             <svg width="10" height="6" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M9.852 1.536c.2-.19.2-.496 0-.684L9.135.17c-.197-.19-.518-.19-.715 0L5.016 3.463 1.582.142c-.2-.19-.52-.19-.717 0L.148.825c-.197.188-.197.494 0 .684l4.508 4.35c.2.187.52.187.717 0l4.48-4.324z" /></svg>
           </div>
         {% endif %}
-
       {% else %}
         <input type="hidden" name="cart[add][id]" id="option">
         {% if product.has_option_groups %}
-          <!-- option groups in list format here -->
-
           {% for option_group in product.option_groups %}
-            <div class="options-list product-options-list">
-              <div class="product-options-list-title">Select {{ option_group.name }}</div>
-              <ul>
+            <div class="product-option-group">
+              <div class="product-option-group-title">Select {{ option_group.name }}</div>
+              <ul class="options-list product-option-value-list product_option_group" data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
                 {% for value in option_group.values %}
-                  <li class="option-item" data-option-id="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</li>
+                  <li class="option-item product-option-item" data-option-id="{{ value.id }}" data-name="{{ value.name | escape }}">
+                    <input class="product-option-value-radio" tabindex="0" type='radio' value='{{ value.id }}' data-name="{{ value.name | escape }}" name='option_group_{{ option_group.id }}' id="option_value_{{ value.id }}" />
+                    <label class="product-option-value-label" for='option_value_{{ value.id }}'>{{ value.name }}</label>
+                  </li>
                 {% endfor %}
               </ul>
             </div>
           {% endfor %}
-
-
-
-
         {% else %}
-          <!-- normal options (existing code) goes here -->
-          <ul class="options-list">
-            {% for option in product.options %}
-              <li class="option-item{% if option.sold_out %} sold-out{% endif %}" data-option-id="{{ option.id }}" data-option-price="{{ option.price | money: theme.money_format | strip_html }}">
-                {{ option.name }} {% if option.price != product.default_price %}- {{ option.price | money: theme.money_format }}{% endif %}
-              </li>
-            {% endfor %}
-          </ul>
+          <div class="product-options">
+            <ul class="options-list" data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
+              {% for option in product.options %}
+                <li class="option-item product-option-item" data-option-id="{{ option.id }}" data-name="{{ option.name | escape }}" {% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>
+                  <input class="product-option-value-radio" data-price="{{ option.price }}" tabindex="0" type='radio' value='{{ option.id }}' data-name="{{ option.name | escape }}" name="product_{{ product.id }}" id="option_value_{{ option.id }}" />
+                  <label class="product-option-value-label" for='option_value_{{ option.id }}'>{{ option.name }}</label>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
         {% endif %}
       {% endif %}
-
-
-
-
-
     {% endif %}
     {{ product | product_quantity_input, 1, 'product-quantity', 'product-quantity' }}
     <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-adding-text="Adding..." data-added-text="Added!" data-add-title="Add to Cart" data-sold-title="Sold out">Add to Cart</button>

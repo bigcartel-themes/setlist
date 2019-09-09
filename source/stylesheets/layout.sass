@@ -79,6 +79,7 @@ a
 
 button, .button
   +appearance(none)
+  +transition(opacity .4s ease-in-out)
   background-color: $button-background-color
   border: 0px
   border-radius: 100px
@@ -96,8 +97,8 @@ button, .button
     opacity: .25
     cursor: not-allowed
 
-  &:active, &:focus
-    outline: none
+  &:hover, &:focus
+    opacity: .8
 
 input, textarea
   +appearance(none)
