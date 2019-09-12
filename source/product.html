@@ -91,7 +91,7 @@
             <ul class="options-list" data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
               {% for option in product.options %}
                 <li class="option-item product-option-item" data-option-id="{{ option.id }}" data-name="{{ option.name | escape }}" {% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>
-                  <input class="product-option-value-radio" data-price="{{ option.price }}" tabindex="0" type='radio' value='{{ option.id }}' data-name="{{ option.name | escape }}" name="product_{{ product.id }}" id="option_value_{{ option.id }}" />
+                  <input class="product-option-value-radio" data-option-id="{{ option.id }}" data-price="{{ option.price }}" tabindex="0" type='radio' value='{{ option.id }}' data-name="{{ option.name | escape }}" name="product_{{ product.id }}" id="option_value_{{ option.id }}" />
                   <label class="product-option-value-label" for='option_value_{{ option.id }}'>{{ option.name }}</label>
                 </li>
               {% endfor %}
