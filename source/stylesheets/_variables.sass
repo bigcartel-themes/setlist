@@ -13,8 +13,8 @@ $primary-text-color: #{"{{ theme.primary_text_color }}"}
 $secondary-text-color: #{"{{ theme.secondary_text_color }}"}
 $error-message-color: #{"{{ theme.error_message_color }}"}
 
-$primary-font: #{"{{ theme.primary_font }}"}
-$secondary-font: #{"{{ theme.secondary_font }}"}
+$primary-font: #{"{{ theme.primary_font | font_family }}"}
+$secondary-font: #{"{{ theme.secondary_font | font_family }}"}
 
 $break-large: 1200px
 $break-medium: 1025px
@@ -23,19 +23,19 @@ $break-extra-small: 360px
 
 @mixin all-transitions
   +transition(.2s linear)
-  
+
 @mixin vertical-align
   +transform(translateY(-50%))
   position: relative
   top: 50%
-  
+
 @mixin keyframes($animation)
   @-webkit-keyframes #{$animation}
     @content
 
   @keyframes #{$animation}
     @content
-    
+
 @mixin animation($str...)
   -webkit-animation: $str
   animation: $str
@@ -43,7 +43,7 @@ $break-extra-small: 360px
 @mixin transform($str...)
   -webkit-transform: $str
   transform: $str
-  
+
 @mixin transition($transition...)
   -webkit-transition: $transition
   transition: $transition
@@ -52,7 +52,7 @@ $break-extra-small: 360px
   -webkit-appearance: none
   -moz-appearance: none
   appearance: none
-  
+
 @mixin pie-clearfix
   &:after
     content: ""
