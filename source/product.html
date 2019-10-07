@@ -38,7 +38,7 @@
   {% if product_status != blank %}<span class="status-text">/ {{ product_status }}</span>{% endif %}
 </h2>
 {% if product.status == 'active' %}
-  <form method="post" class="product-form {% if theme.show_sold_out_product_options %}show-sold-out{% else %}hide-sold-out{% endif %}" action="/cart" accept-charset="utf8">
+  <form method="post" class="product-form {% if theme.show_sold_out_product_options %}show-sold-out{% else %}hide-sold-out{% endif %} {% if product.has_option_groups %}option-groups-enabled{% endif %}" action="/cart" accept-charset="utf8">
     <input type="hidden" name="utf8" value='✓'>
     {% if product.has_default_option %}
       {{ product.option | hidden_option_input }}
@@ -101,7 +101,12 @@
       {% endif %}
     {% endif %}
     {{ product | product_quantity_input, 1, 'product-quantity', 'product-quantity' }}
-    <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-adding-text="Adding..." data-added-text="Added!" data-add-title="Add to Cart" data-sold-title="Sold out">Add to Cart</button>
+    <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-adding-text="Adding..." data-added-text="Added!" data-add-title="Add to Cart" data-sold-title="Sold out"{% if product.has_default_option %}{% else %}disabled="disabled"{% endif %}>Add to Cart</button>
+    {% if product.has_option_groups %}
+      <div class="reset-selection-button-container">
+        <button class="button minimal-button reset-selection-button" title="Reset selection" type="reset">Reset selection</button>
+      </div>
+    {% endif %}
   </form>
 {% endif %}
 <div class="product-description">

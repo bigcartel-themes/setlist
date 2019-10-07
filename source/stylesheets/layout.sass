@@ -93,11 +93,18 @@ button, .button
   padding: 0 20px
   text-align: center
 
+  &.minimal-button
+    background: none
+    color: $primary-text-color
+    border: none
+    font-size: 14px
+    padding: 0
+
   &:disabled, &.disabled
     opacity: .25
     cursor: not-allowed
 
-  &:hover, &:focus
+  &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus
     opacity: .8
 
 input, textarea

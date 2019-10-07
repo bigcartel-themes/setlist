@@ -167,6 +167,9 @@ h2.product-price
 .product-quantity
   display: none
 
+.product-form.option-groups-enabled
+  display: none
+
 .add-to-cart-button
   display: inline-block
   max-width: 300px
@@ -176,6 +179,23 @@ h2.product-price
     display: block
     margin: 0 auto
     max-width: 100%
+
+.reset-selection-button-container
+  max-width: 300px
+  text-align: center
+  width: 100%
+
+  @media screen and (max-width: $break-small)
+    max-width: 100%
+
+button.reset-selection-button
+  display: none
+  height: auto
+  max-width: 100%
+  line-height: normal
+  margin: 20px auto 0
+  padding: 4px
+  width: auto
 
 #product .panel-content
   max-width: 600px
