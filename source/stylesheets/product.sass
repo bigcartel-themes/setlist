@@ -92,7 +92,7 @@ h2.product-price
   +flex-wrap(wrap)
   color: $secondary-text-color
   font-family: $secondary-font
-  margin: 0 0 40px
+  margin: 0 0 24px
   padding: 0
 
   &.product-options-list
@@ -347,4 +347,11 @@ button.reset-selection-button
 
 @media screen and (max-width: $break-small)
   .product-image-panel .full-product-images
+    max-width: 100%
+
+#instant-checkout-button
+  margin-top: 16px
+  max-width: 300px
+
+  @media screen and (max-width: $break-medium)
     max-width: 100%
