@@ -24,6 +24,7 @@ function processProduct(product) {
 
   $('.reset-selection-button').on('click', function() {
     disableAddButton("add-to-cart");
+    $('#option').val(0);
     $(this).hide();
     if (product_option_display == 'dropdown') {
       $(".product_option_group option").each(function(index,element) {
