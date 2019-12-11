@@ -100,7 +100,6 @@ function openOverlay(type) {
       $('.close-overlay').fadeIn('fast');
     });
     $('html').css('overflow-y','hidden');
-    $('.left-panel').css('height','100vh');
     $('.navigation-overlay').toggleClass('open');
   }
 }
@@ -110,7 +109,6 @@ function closeOverlay() {
     $('.menu-item').fadeIn('fast');
   });
   $('html').css('overflow-y','scroll');
-  $('.left-panel').css('height','auto');
   $('.cart-overlay').removeClass('open');
   $('.navigation-overlay').removeClass('open');
 }
