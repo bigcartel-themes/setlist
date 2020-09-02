@@ -3,7 +3,7 @@
 .cart-form
   .cart-empty-holder
     display: none
-    
+
 .cart-items
   left: -27px
   list-style: none
@@ -12,12 +12,12 @@
   padding-bottom: 240px
   position: relative
   width: 100%
-  
+
   @media screen and (max-width: $break-medium)
     left: 0
     margin: 0 auto
     max-width: 500px
-    
+
 .cart-item
   +pie-clearfix
   +flexbox
@@ -25,14 +25,14 @@
   +justify-content(center)
   height: 200px
   margin-bottom: 50px
-  
+
   @media screen and (max-width: $break-small)
     height: 100px
 
 .item-quantity-holder
   text-align: center
   width: 50px
-  
+
 .qty-input
   +appearance(none)
   background: $content-area-background-color
@@ -43,10 +43,10 @@
   padding: 10px
   text-align: center
   width: 50px
-  
+
   &:active, &:focus
     outline: none
-  
+
 .qty-button
   +transition(opacity .2s ease-in-out)
   border-radius: 50%
@@ -66,7 +66,7 @@
     fill: $button-text-color
     margin: 5px auto 0
     width: 20px
-    
+
 .item-image-details
   +pie-clearfix
   +flexbox
@@ -74,7 +74,7 @@
   height: 200px
   margin-left: 30px
   width: calc(100% - 80px)
-  
+
   @media screen and (max-width: $break-small)
     height: 100px
     margin-left: 20px
@@ -84,7 +84,7 @@
   background-size: cover
   height: 200px
   width: 200px
-  
+
   @media screen and (max-width: $break-small)
     height: 100px
     width: 100px
@@ -93,7 +93,7 @@
   padding-left: 20px
   text-align: left
   width: calc(100% - 200px)
-  
+
   @media screen and (max-width: $break-small)
     width: calc(100% - 100px)
 
@@ -108,12 +108,12 @@
   font-family: $secondary-font
   font-size: 15px
   margin-bottom: 15px
-  
+
 .item-details-price
   color: $secondary-text-color
   font-family: $secondary-font
   font-size: 15px
-  
+
 .cart-footer
   +transition(all .3s ease-in-out)
   background: none
@@ -126,7 +126,7 @@
   text-align: center
   width: calc(50% - 60px)
   z-index: 3
-  
+
   @media screen and (max-width: $break-medium)
     bottom: 60px
     left: 0
@@ -137,7 +137,7 @@
 
   @media screen and (max-width: $break-small)
     padding: 32px
-    
+
 .cart-footer-background
   background: $content-area-background-color
   bottom: 0
@@ -154,17 +154,17 @@
   font-size: 30px
   font-weight: normal
   margin-top: 0
-  
+
   @media screen and (max-width: $break-medium)
     font-size: 20px
-  
+
 .checkout-btn
   color: $button-text-color
   width: 100%
-  
+
   @media screen and (max-width: $break-medium)
     max-width: 100%
-  
+
   .checkout-btn-icon
     fill: $button-text-color
     height: 18px
@@ -177,7 +177,7 @@
   +transform(translateY(-50%))
   position: absolute
   top: 50%
-  
+
   @media screen and (max-width: $break-medium)
     +transform(none)
     height: calc(100vh - 80px)
@@ -186,7 +186,7 @@
     text-align: center
     top: -40px
     width: 100%
-    
+
     > p
       +vertical-align
 
@@ -194,7 +194,7 @@
   display: block
   font-size: 30px
   margin-bottom: 24px
-  
+
 .start-shopping
   display: inline-block
   max-width: 300px
@@ -202,12 +202,12 @@
 
 .small-message
   font-family: $secondary-font
-  font-size: 15px
+  font-size: 16px
 
 .cart-subtotal
   +pie-clearfix
   text-align: left
-  
+
   .cart-total-amount
     float: right
 

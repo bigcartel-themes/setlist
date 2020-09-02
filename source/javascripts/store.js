@@ -226,7 +226,7 @@ $(document).ready(function () {
   var swipingCarousel = $('.image-list-container');
   var swipingCarouselCells = $('.image-list-container > a');
   swipingCarouselOptions = {
-    accessibility: false,
+    accessibility: true,
     wrapAround: false,
     dragThreshold: 8,
     prevNextButtons: false,
@@ -239,7 +239,7 @@ $(document).ready(function () {
   hoverCarousel = $('.product-list');
   hoverCarouselCells = $('.product-list a');
   hoverCarouselOptions = {
-    accessibility: false,
+    accessibility: true,
     wrapAround: false,
     prevNextButtons: false,
     dragThreshold: 8,
@@ -255,7 +255,7 @@ $(document).ready(function () {
   productImages = $('.full-product-images');
   productImagesCells = $('.full-product-images > div');
   productImagesOptions = {
-    accessibility: false,
+    accessibility: true,
     wrapAround: true,
     prevNextButtons: false,
     dragThreshold: 8,
@@ -264,7 +264,7 @@ $(document).ready(function () {
     adaptiveHeight: true
   }
   desktopProductImagesOptions = {
-    accessibility: false,
+    accessibility: true,
     wrapAround: true,
     prevNextButtons: false,
     dragThreshold: 8,
@@ -275,7 +275,7 @@ $(document).ready(function () {
   productImages.flickity(productImagesOptions);
   productThumbnailNav = $('.product-thumbnails');
   productThumbnailNavOptions = {
-    accessibility: false,
+    accessibility: true,
     wrapAround: false,
     prevNextButtons: false,
     imagesLoaded: true,
