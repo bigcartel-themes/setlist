@@ -3,19 +3,19 @@
 .category-header
   color: $secondary-text-color
   font-family: $secondary-font
-  font-size: 13px
+  font-size: 14px
   font-weight: normal
-  
+
   @media screen and (max-width: $break-medium)
     margin-bottom: 25px
     text-align: center
-  
+
   > a
     color: $secondary-text-color
 
 .category-card
   position: relative
-  
+
   &:before
     +transition(width 0.8s ease-out, left 0.8s ease-out)
     background-color: $primary-text-color
@@ -27,13 +27,13 @@
     top: 50%
     width: 0
     z-index: -1
-  
+
   &.active:before
     width: 20px
-  
+
   &.active .category-link
     left: 20px
-    
+
   .category-link
     +transition(all .8s ease-in-out)
     +pie-clearfix
@@ -44,14 +44,14 @@
     line-height: 30px
     padding: 4px 2px
     position: relative
-    
+
 .no-products-message
   font-family: $secondary-font
-  font-size: 15px
-  
+  font-size: 16px
+
   @media screen and (max-width: $break-medium)
     text-align: center
-  
+
 .product-list
   &:after
     content: none
@@ -61,7 +61,7 @@
   cursor: pointer
   display: block
   position: relative
-  
+
   &:before
     +transition(width 0.4s ease-out, left 0.4s ease-out)
     background-color: $primary-text-color
@@ -73,17 +73,17 @@
     top: 50%
     width: 0
     z-index: -1
-  
-  &:hover:before
+
+  &:hover:before, &:focus:before
     left: -10px
     width: 20px
-  
-  &:hover .product-link
+
+  &:hover .product-link, &:focus .product-link
     left: 20px
-    
-  &:hover .product-price
+
+  &:hover .product-price, &:focus .product-price
     opacity: 1
-    
+
   .product-link
     +transition(all .4s ease-in-out)
     +pie-clearfix
@@ -94,11 +94,11 @@
     line-height: 30px
     padding: 7px 2px
     position: relative
-  
+
   .product-title
     padding-right: 20px
     z-index: 5
-  
+
   .product-price
     +transition(opacity .4s linear)
     font-size: 15px
@@ -126,33 +126,33 @@
 @media only screen and (min-width: $break-medium)
   .left-panel .product-list::after
     content: 'flickity'
-  
-  .image-list-container .flickity-viewport 
+
+  .image-list-container .flickity-viewport
     overflow: visible
     position: relative
     pointer-events: none
-  
+
   .image-list-container .flickity-slider
     +transform(none !important)
     position: absolute
     width: 100%
     height: 100%
-  
-  .image-list-container .carousel-cell 
+
+  .image-list-container .carousel-cell
     +transition(opacity 0.6s linear, z-index 0.9s linear 0.2s)
     left: 0 !important
     opacity: 0
     position: relative
     z-index: -1
-  
+
   .image-list-container .carousel-cell.is-selected
     +transition(opacity 0.6s linear)
     opacity: 1
     z-index: 0
-  
-  .image-list-container .flickity-page-dots 
+
+  .image-list-container .flickity-page-dots
     display: none
-  
+
 .nav-link
   display: block
 
@@ -181,18 +181,18 @@
     padding: 60px
     height: 100vh
     width: 100%
-    
+
     &.image-fill
       object-fit: cover
       padding: 0
-    
+
   .product-details
     display: none
-  
+
   .carousel-cell
     height: 100vh
     width: 100%
-    
+
   &.image-fill
     .product-image-background
       object-fit: cover
@@ -212,11 +212,11 @@
     padding-bottom: 0
     position: relative
     right: auto
-    
+
     .flickity-viewport
       position: absolute
       width: 100%
-      
+
     .carousel-cell
       +flexbox
       +align-items(center)
@@ -225,10 +225,10 @@
       height: 100%
       padding: 0 10px
       width: 70%
-      
+
       &.is-selected .product-image-background
         +transform(scale(1))
-      
+
     .product-image-background
       +transform(scale(.9))
       +transition(transform .3s)
@@ -245,20 +245,20 @@
       margin-top: 20px
       padding: 0 20px
       text-align: center
-      
+
       .product-price
-        font-size: 15px
+        font-size: 16px
         margin-top: 10px
-        
+
 @media screen and (max-width: $break-medium) and (orientation: landscape)
   .image-list-container
-    
+
     .product-image-background
       max-height: 440px
-      
+
     .carousel-cell
       width: 60%
-        
+
 @media screen and (max-width: $break-small)
   .image-list-container
     min-height: 500px
@@ -266,52 +266,51 @@
     .carousel-cell
       padding: 0 10px
       width: 65%
-      
+
       .product-image-background
         margin-top: 20px
         max-height: 55%
         padding: 0
         width: 100%
-        
+
     .product-details
       font-size: 20px
       margin-top: 0
-      
+
 .pagination
-  display: none
   font-family: $secondary-font
   font-size: 15px
   margin-top: 40px
   position: relative
-  
+
   @media screen and (max-width: $break-medium)
     margin: 40px auto 0
     max-width: 500px
     text-align: center
-  
+
   @media screen and (max-width: $break-small)
     top: -80px
     z-index: 5
-    
+
   a, span
     color: $secondary-text-color
     padding: 2px 6px
-  
+
     &.disabled
       display: none
-    
+
     &.current
       color: $primary-text-color
-      
+
   .previous svg, .next svg
     fill: $secondary-text-color
     position: relative
     top: -2px
-      
+
   .previous svg
     +transform(rotate(90deg))
     margin-right: 5px
-    
+
   .next svg
     +transform(rotate(-90deg))
     margin-left: 5px
